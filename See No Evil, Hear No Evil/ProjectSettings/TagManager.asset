@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - PlayerSonar
+  - PatrolPoint
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Collide
+  - Water
+  - UI
+  - EnemyHearing
+  - Door
+  - Behind Mask
+  - FoV
+  - Black
+  - Interactable
+  - Props
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 325071219
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 964492443
+    locked: 0
+  - name: UI
+    uniqueID: 2885950595
+    locked: 0
