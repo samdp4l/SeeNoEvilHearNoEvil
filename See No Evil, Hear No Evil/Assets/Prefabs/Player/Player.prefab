@@ -226,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b11c039260795744acfb072025fd873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfViewCircle: {fileID: 0}
   fieldOfView: {fileID: 0}
+  fieldOfViewCircle: {fileID: 0}
   angle: 0
 --- !u!114 &2636709142329220671
 MonoBehaviour:
@@ -257,8 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42895bfabfacf7b499cff38b61cfadfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Viewing: {fileID: 0}
-  Hearing: {fileID: 0}
+  senseTimer: 15
   visionMode: 1
 --- !u!114 &4219207637132946429
 MonoBehaviour:
@@ -309,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2636709142329220643}
-  interactRadius: 3
+  interactRadius: 2
 --- !u!1 &2636709142829462707
 GameObject:
   m_ObjectHideFlags: 0

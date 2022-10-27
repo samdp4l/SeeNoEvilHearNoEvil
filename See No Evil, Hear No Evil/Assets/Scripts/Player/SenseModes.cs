@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SenseModes : MonoBehaviour
 {
-    public GameObject viewing;
-    public GameObject viewingCircle;
-    public GameObject hearing;
     public float senseTimer = 15f;
-
     [HideInInspector]
     public bool visionMode = true;
+
+    private GameObject viewing;
+    private GameObject viewingCircle;
+    private GameObject hearing;
 
     private void Awake()
     {

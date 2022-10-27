@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - PlayerSonar
   - PatrolPoint
+  - Memory
+  - Journal
+  - Door
+  - Flare
+  - Bottle
   layers:
   - Default
   - TransparentFX

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LookDir : MonoBehaviour
 {
-    public FieldOfViewCircle fieldOfViewCircle;
     public FieldOfView fieldOfView;
+    public FieldOfViewCircle fieldOfViewCircle;
 
     [HideInInspector]
     public float angle;
