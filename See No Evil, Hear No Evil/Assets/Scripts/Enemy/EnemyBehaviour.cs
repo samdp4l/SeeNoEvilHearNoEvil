@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Pathfinding.AIDestinationSetter pf;
     public Pathfinding.AIPath ap;
     public List<Transform> points = new List<Transform>();
+    public GameObject instance;
 
     [HideInInspector]
     public Transform chaseTarget;
@@ -22,7 +23,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Start()
     {
-        pf.target = points[0];
+        
     }
 
     private void Update()
@@ -73,7 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collideInfo)
     {
-        if (collideInfo.CompareTag("PatrolPoint"))
+        if (collideInfo.CompareTag("PatrolPoint") && patrolling == true)
         {
             ChangePoint();
         }

@@ -26,6 +26,15 @@ public class InventoryManager : MonoBehaviour
         memoryCollection += collectionValue;
         //text.text = "X" + collection.ToString();
         Debug.Log("Memory: " + memoryCollection);
+
+        if (memoryCollection == 1)
+        {
+            EventsManager.instance.PhaseTwo();
+        }
+        if (memoryCollection == 2)
+        {
+            EventsManager.instance.PhaseThree();
+        }
     }
 
     public void CollectJournal(int collectionValue)

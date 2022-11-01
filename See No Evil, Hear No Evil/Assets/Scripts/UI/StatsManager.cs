@@ -12,7 +12,7 @@ public class StatsManager : MonoBehaviour
     public float gracePeriod = 3f;
     public float healFreq = 0.5f;
     public int healAmount = 1;
-    public float dotTimer = 15f;
+    public float dotTimer = 30f;
     public float dotFreq = 1f;
     public int dotDmg = 5;
 

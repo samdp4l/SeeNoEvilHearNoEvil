@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             scriptOn = true;
             stamRegenCD = true;
             speed = runSpeed;
-            Invoke("OnSonarScript", 0f);
+            GetComponent<SpawnSonar>().enabled = true;
 
             GetComponent<StatsManager>().PlayerUseStamina(30f);
         }
@@ -64,19 +64,9 @@ public class PlayerMovement : MonoBehaviour
         {
             scriptOn = false;
             speed = startSpeed;
-            Invoke("OffSonarScript", 0.1f);
+            GetComponent<SpawnSonar>().enabled = false;
             Invoke("StartStamRegen", 3f);
         }
-    }
-
-    void OnSonarScript()
-    {
-        GetComponent<SpawnSonar>().enabled = true;
-    }
-
-    void OffSonarScript()
-    {
-        GetComponent<SpawnSonar>().enabled = false;
     }
 
     void StartStamRegen()

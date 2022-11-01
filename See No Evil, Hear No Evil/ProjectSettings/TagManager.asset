@@ -12,6 +12,11 @@ TagManager:
   - Door
   - Flare
   - Bottle
+  - TriggerDoor
+  - Wall1
+  - Wall2
+  - Wall3
+  - Distraction
   layers:
   - Default
   - TransparentFX
@@ -54,6 +59,9 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 964492443
+    locked: 0
+  - name: Foreground
+    uniqueID: 1298261233
     locked: 0
   - name: UI
     uniqueID: 2885950595

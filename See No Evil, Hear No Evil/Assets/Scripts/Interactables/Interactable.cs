@@ -24,13 +24,18 @@ public class Interactable : MonoBehaviour
             foreach (Collider2D collider2D in collider2DArray)
             {
                 InterfaceDoor door = collider2D.GetComponent<InterfaceDoor>();
-                Collectables collectable = collider2D.GetComponent<Collectables>();
-                Throwables throwable = collider2D.GetComponent<Throwables>();
 
                 if (collider2D.gameObject.CompareTag("Door"))
                 {
                     //There is a Door in range
                     door.ToggleDoor();
+                }
+
+                if (collider2D.gameObject.CompareTag("TriggerDoor"))
+                {
+                    //There is a Door in range
+                    door.ToggleDoor();
+                    EventsManager.instance.PhaseOne();
                 }
 
                 if (collider2D.gameObject.CompareTag("Memory"))
@@ -59,6 +64,11 @@ public class Interactable : MonoBehaviour
                     //collectable.CollectB();
                     InventoryManager.instance.CollectBottle(collectionValue);
                     Destroy(collider2D.gameObject);
+                }
+
+                if (collider2D.gameObject.CompareTag("Distraction"))
+                {
+                    collider2D.gameObject.GetComponent<Distraction>().Activate();
                 }
             }
         }

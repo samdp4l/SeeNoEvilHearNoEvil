@@ -20,14 +20,14 @@ public class SpawnSonar : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
     private void Update()
     {
         if(gameObject.CompareTag("Enemy") && GetComponent<HearingDetection>().inRange == false)
-        {
-            CancelInvoke();
-        }
-
-        if (gameObject.CompareTag("Player") && GetComponent<PlayerMovement>().scriptOn == false)
         {
             CancelInvoke();
         }

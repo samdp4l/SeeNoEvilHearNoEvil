@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 4219207637132946429}
   - component: {fileID: 4290026083623224614}
   - component: {fileID: 8797475977821289954}
+  - component: {fileID: 7252307049390974982}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42895bfabfacf7b499cff38b61cfadfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseTimer: 15
+  senseTimer: 30
   visionMode: 1
 --- !u!114 &4219207637132946429
 MonoBehaviour:
@@ -277,7 +278,7 @@ MonoBehaviour:
   gracePeriod: 3
   healFreq: 0.5
   healAmount: 1
-  dotTimer: 15
+  dotTimer: 30
   dotFreq: 1
   dotDmg: 5
   healthDot: 0
@@ -288,7 +289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2636709142329220655}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc89806dfd7bcce4ea61da3ee601c738, type: 3}
   m_Name: 
@@ -309,6 +310,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2636709142329220643}
   interactRadius: 2
+--- !u!114 &7252307049390974982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e02e7bfd9f09764ca0a325c0356670d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints: []
+  currentSpawn: 0
 --- !u!1 &2636709142829462707
 GameObject:
   m_ObjectHideFlags: 0
