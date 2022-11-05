@@ -76,10 +76,10 @@ MonoBehaviour:
   m_AssetVersion: 1
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 15359
+    m_Bits: 255
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 15359
+    m_Bits: 255
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
     passTag: Black
     Event: 500

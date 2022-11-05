@@ -9,6 +9,8 @@ public class LookDir : MonoBehaviour
 
     [HideInInspector]
     public float angle;
+    public Vector3 lookDirection;
+
     private Transform lookTransform;
 
     public static Vector3 GetMouseWorldPosition()
@@ -40,7 +42,7 @@ public class LookDir : MonoBehaviour
     void Update()
     {
         Vector3 mousePosition = GetMouseWorldPosition();
-        Vector3 lookDirection = (mousePosition - transform.position).normalized;
+        lookDirection = (mousePosition - transform.position).normalized;
         angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         lookTransform.eulerAngles = new Vector3(0, 0, angle);
 
