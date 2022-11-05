@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3384971324293715461}
   - component: {fileID: 3384971324293715464}
   - component: {fileID: 3384971324293715463}
-  - component: {fileID: 3469990932028152892}
+  - component: {fileID: 8682701224328806059}
   m_Layer: 0
   m_Name: Bottle Projectile
   m_TagString: Bottle
@@ -118,13 +118,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &3469990932028152892
+--- !u!114 &8682701224328806059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,5 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd69f8ea686a0a459ff7ba441f02685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 30
+  throwForce: 20
   rb: {fileID: 3384971324293715464}
+  effects: 0
+  sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}

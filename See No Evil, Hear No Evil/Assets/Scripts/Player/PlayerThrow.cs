@@ -7,14 +7,13 @@ public class PlayerThrow : MonoBehaviour
     public GameObject bottlePrefab;
     public GameObject flarePrefab;
 
-    public Transform throwPoint;
-
+    private Transform throwPoint;
     private int itemChoice = 0;
-    private Quaternion direction;
+    private bool throwCD;
 
     private void Start()
     {
-        throwPoint = GameObject.Find("Player").transform;
+        throwPoint = GameObject.Find("Look Direction").transform;
     }
 
     private void Update()
@@ -46,21 +45,27 @@ public class PlayerThrow : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && throwCD == false && itemChoice != 0)
         {
-            direction = Quaternion.Euler(0f, 0f, throwPoint.eulerAngles.z);
+            throwCD = true;
+            Invoke("OffCooldown", 5f);
 
             if (itemChoice == 1 && InventoryManager.instance.bottleCount > 0)
             {
-                Instantiate(bottlePrefab, throwPoint.position, direction);
-                InventoryManager.instance.bottleCount -= 1;
+                Instantiate(bottlePrefab, throwPoint.position, throwPoint.rotation);
+                //InventoryManager.instance.bottleCount -= 1;
             }
 
             if (itemChoice == 2 && InventoryManager.instance.flareCount > 0)
             {
-                Instantiate(flarePrefab, throwPoint.position, direction);
+                Instantiate(flarePrefab, throwPoint.position, throwPoint.rotation);
                 //InventoryManager.instance.flareCount -= 1;
             }
         }
+    }
+
+    void OffCooldown()
+    {
+        throwCD = false;
     }
 }

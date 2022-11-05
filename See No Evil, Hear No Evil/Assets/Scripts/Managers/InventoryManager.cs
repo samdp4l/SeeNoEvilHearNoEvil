@@ -10,8 +10,7 @@ public class InventoryManager : MonoBehaviour
     public int throwableLimit = 2;
     [HideInInspector]
     public int journalCollection = 0;
-    public int flareCount = 2;
-    [HideInInspector]
+    public int flareCount = 0;
     public int bottleCount = 0;
 
     private int memoryCollection = 0;

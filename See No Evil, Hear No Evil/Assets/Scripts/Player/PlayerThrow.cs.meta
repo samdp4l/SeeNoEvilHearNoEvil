@@ -3,7 +3,9 @@ guid: 91f276e577fc925448d0333cade04444
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bottlePrefab: {fileID: 3384971324293715460, guid: 8a602bd134d5f844589a464e3ee47fe9, type: 3}
+  - flarePrefab: {fileID: 2239296928417223010, guid: 7e6427a9faaa9cf4190a542ceaad8382, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

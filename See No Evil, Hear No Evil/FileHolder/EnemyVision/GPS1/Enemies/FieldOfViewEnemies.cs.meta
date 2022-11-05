@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: afd69f8ea686a0a459ff7ba441f02685
+guid: 84baa5dce3fb02d45a467bccdd2f1364
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - rb: {instanceID: 0}
-  - sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
