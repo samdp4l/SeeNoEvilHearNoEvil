@@ -10,8 +10,6 @@ public class EnemyBehaviour : MonoBehaviour
     public Pathfinding.AIDestinationSetter pf;
     public Pathfinding.AIPath ap;
     public List<Transform> points = new List<Transform>();
-    public GameObject instance;
-
     [HideInInspector]
     public Transform chaseTarget;
     [HideInInspector]
@@ -20,11 +18,6 @@ public class EnemyBehaviour : MonoBehaviour
     public bool attacking = false;
 
     private int currentPoint = 0;
-
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {

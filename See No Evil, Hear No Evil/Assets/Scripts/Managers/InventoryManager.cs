@@ -8,7 +8,6 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
     public TextMeshProUGUI text;
     public int throwableLimit = 2;
-    [HideInInspector]
     public int journalCollection = 0;
     public int flareCount = 0;
     public int bottleCount = 0;

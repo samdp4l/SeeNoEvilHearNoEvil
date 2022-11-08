@@ -5,9 +5,11 @@ using UnityEngine;
 public class SenseModes : MonoBehaviour
 {
     public float senseTimer = 30f;
+    public float cooldown = 15f;
     [HideInInspector]
     public bool visionMode = true;
 
+    private bool senseCD;
     private GameObject viewing;
     private GameObject viewingCircle;
     private GameObject hearingRange;
@@ -33,9 +35,12 @@ public class SenseModes : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && senseCD == false)
         {
-            CancelInvoke();
+            senseCD = true;
+            Invoke("OffCooldown", cooldown);
+
+            CancelInvoke("Countdown");
             senseTimer = 30f;
             viewing.GetComponent<FieldOfView>().fov = 90f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 3f;
@@ -92,5 +97,10 @@ public class SenseModes : MonoBehaviour
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 2.5f;
             hearingRange.transform.localScale = new Vector3(25f, 25f);
         }
+    }
+
+    void OffCooldown()
+    {
+        senseCD = false;
     }
 }

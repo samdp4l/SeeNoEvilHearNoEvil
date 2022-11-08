@@ -23,7 +23,7 @@ public class PlayerThrow : MonoBehaviour
             itemChoice = 0;
         }
 
-        if (InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.flareCount == 0)
+        if (InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.flareCount >= 0)
         {
             itemChoice = 1;
         }

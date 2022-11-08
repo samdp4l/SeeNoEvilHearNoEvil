@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1243251969561378732}
   - component: {fileID: 1243251969561378728}
   - component: {fileID: 1554270882113949053}
-  - component: {fileID: 1243251969561378729}
   - component: {fileID: 1243251969561378726}
   - component: {fileID: 1243251969561378727}
   - component: {fileID: 1243251969561378723}
@@ -146,19 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1243251969561378730}
   interactRadius: 5
---- !u!114 &1243251969561378729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243251969561378733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7436c4f5d296f9640a3641609272f4cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inRange: 0
 --- !u!114 &1243251969561378726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +181,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  instance: {fileID: 0}
   chaseTarget: {fileID: 0}
   patrolling: 1
   attacking: 0

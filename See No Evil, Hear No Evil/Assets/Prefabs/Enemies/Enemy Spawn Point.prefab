@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1243251969561378733, guid: b421d306bbfcb12459858d7c6a14e68f, type: 3}
+  visionPrefab: {fileID: 2630634451930209317, guid: 64de5288edc58124090abdc3753edead, type: 3}
   patrolPoints: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3384971324293715462}
   - component: {fileID: 3384971324293715461}
   - component: {fileID: 3384971324293715464}
-  - component: {fileID: 3384971324293715463}
+  - component: {fileID: 3416991593401378419}
   - component: {fileID: 8682701224328806059}
   m_Layer: 0
   m_Name: Bottle Projectile
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3384971324293715460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 87.25, y: -6.28, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0.3773585, b: 0.33888277, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 52a206adf684860469fe704792394cb1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,16 +100,16 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 3
+  m_AngularDrag: 3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &3384971324293715463
-CircleCollider2D:
+--- !u!70 &3416991593401378419
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,8 +122,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.51, y: 1.09}
+  m_Direction: 0
 --- !u!114 &8682701224328806059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd69f8ea686a0a459ff7ba441f02685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 20
+  throwForce: 30
   rb: {fileID: 3384971324293715464}
   effects: 0
   sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
+  brokenPrefab: {fileID: 1280133953365023906, guid: 956075f2a952ff04586bf08af3fd5d08, type: 3}
+  rotationSpeed: 50

@@ -8,7 +8,6 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     public bool locked = false;
     public GameObject door;
 
-    private GameObject[] enemies;
     private GameObject player;
     private HingeJoint2D hingeJoint2D;
     private JointAngleLimits2D openDoorLimitsUp;
@@ -20,7 +19,6 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     {
         player = GameObject.Find("Player");
         hingeJoint2D = transform.Find("Hinge").GetComponent<HingeJoint2D>();
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         openDoorLimitsUp = new JointAngleLimits2D { min = -90f, max = -90f };
         openDoorLimitsDown = new JointAngleLimits2D { min = 90f, max = 90f };
@@ -41,11 +39,6 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
 
             Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
-            foreach (GameObject enemy in enemies)
-            {
-                Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), enemy.GetComponent<Collider2D>());
-            }
-
             Invoke("EnableCollision", 0.3f);
         }
     }
@@ -61,11 +54,6 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
             Invoke("CloseDoor", 5f);
 
             Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
-
-            foreach (GameObject enemy in enemies)
-            {
-                Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), enemy.GetComponent<Collider2D>());
-            }
 
             Invoke("EnableCollision", 0.3f);
         }
@@ -118,10 +106,5 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     void EnableCollision()
     {
         Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), false);
-
-        foreach (GameObject enemy in enemies)
-        {
-            Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), enemy.GetComponent<Collider2D>(), false);
-        }
     }
 }

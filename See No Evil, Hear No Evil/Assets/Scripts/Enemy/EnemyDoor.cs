@@ -6,8 +6,21 @@ public class EnemyDoor : MonoBehaviour
 {
     public Transform enemy;
     public float interactRadius = 5f;
+    private GameObject[] doors;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        doors = GameObject.FindGameObjectsWithTag("Door");
+    }
+
+    private void Start()
+    {
+        foreach (GameObject door in doors)
+        {
+            Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
+    }
+
     void Update()
     {
         Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(enemy.position, interactRadius);

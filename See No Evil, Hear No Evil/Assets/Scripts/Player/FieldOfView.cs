@@ -5,6 +5,7 @@ using UnityEngine;
 public class FieldOfView : MonoBehaviour
 {
     public LayerMask layerMask;
+    public int rayCount = 50; //change to make the edge more smooth
     public float fov = 90f;
     public float viewDistance = 15f;
 
@@ -33,11 +34,11 @@ public class FieldOfView : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
     }
+
     private void Update()
     {
         mesh.RecalculateBounds();
 
-        int rayCount = 50;//change to make the edge more smooth
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
 

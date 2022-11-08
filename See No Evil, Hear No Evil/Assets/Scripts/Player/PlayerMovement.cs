@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float startSpeed = 5f;
     public float runSpeed = 10f;
+    public float sneakSpeed = 2f;
     public Rigidbody2D rb;
 
     [HideInInspector]
@@ -44,7 +45,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && GameManager.gameManager.playerStamina.Stamina > 0)
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            scriptOn = false;
+            speed = sneakSpeed;
+            GetComponent<SpawnSonar>().enabled = false;
+            Invoke("StartStamRegen", 3f);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && GameManager.gameManager.playerStamina.Stamina > 0)
         {
             CancelInvoke("StartStamRegen");
             scriptOn = true;
@@ -53,6 +61,10 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<SpawnSonar>().enabled = true;
 
             GetComponent<StatsManager>().PlayerUseStamina(30f);
+        }
+        else 
+        {
+            speed = startSpeed;
         }
 
         if (stamRegenCD == false)
@@ -63,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKey(KeyCode.LeftShift) == false || GameManager.gameManager.playerStamina.Stamina <= 0) && stamRegenCD == true)
         {
             scriptOn = false;
-            speed = startSpeed;
             GetComponent<SpawnSonar>().enabled = false;
             Invoke("StartStamRegen", 3f);
         }

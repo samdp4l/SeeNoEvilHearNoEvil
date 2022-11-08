@@ -15,7 +15,7 @@ public class DestroyObject : MonoBehaviour
     {
         Destroy(gameObject, despawnTime);
 
-        if (player.GetComponent<SenseModes>().visionMode)
+        if (player.GetComponent<SenseModes>().visionMode && (gameObject.CompareTag("PlayerSonar") || gameObject.CompareTag("EnemySonar")))
         {
             GetComponent<SpriteRenderer>().color = Color.clear;
         }
