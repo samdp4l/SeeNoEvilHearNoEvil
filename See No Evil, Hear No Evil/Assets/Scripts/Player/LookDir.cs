@@ -9,6 +9,7 @@ public class LookDir : MonoBehaviour
 
     [HideInInspector]
     public float angle;
+    [HideInInspector]
     public Vector3 lookDirection;
 
     private Transform lookTransform;
@@ -20,14 +21,17 @@ public class LookDir : MonoBehaviour
         return vec;
     }
     //Looking at Mouse
+
     public static Vector3 GetMouseWorldPositionWithZ()
     {
         return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
     }
+
     public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
     {
         return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
     }
+
     public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
     {
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);

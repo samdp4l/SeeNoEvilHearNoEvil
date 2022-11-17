@@ -22,5 +22,6 @@ public class EnemyAttackTrigger : MonoBehaviour
     {
         enemy.GetComponent<EnemyBehaviour>().attacking = false;
         enemy.GetComponent<EnemyBehaviour>().patrolling = true;
+        enemy.GetComponent<EnemyBehaviour>().Patrol();
     }
 }

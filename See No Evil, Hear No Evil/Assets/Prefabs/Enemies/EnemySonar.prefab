@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2883295808565830540}
   - component: {fileID: 8091618602643818259}
   - component: {fileID: 3131680230150106091}
+  - component: {fileID: -7692123845047788972}
   m_Layer: 0
   m_Name: EnemySonar
   m_TagString: EnemySonar
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3437814128136582608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.8683424, y: 1.1608399, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 964492443
   m_SortingLayer: 1
   m_SortingOrder: -5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.043533802, a: 0.43137255}
+  m_Sprite: {fileID: 21300000, guid: 874dd07485667ee449450294014e9ce2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,3 +100,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   despawnTime: 1
   player: {fileID: 0}
+--- !u!95 &-7692123845047788972
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437814128136582608}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1623b8eaaa1f60949a9d29c9425574a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -34,6 +34,7 @@ public class BreakableObstacle : MonoBehaviour
     {
         if (collideInfo.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.Play("VaseBreak");
             Instantiate(sonarPrefab, obstacle.position - offset, obstacle.rotation);
             Instantiate(brokenPrefab, obstacle.position - offset, obstacle.rotation);
             Destroy(gameObject);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerThrow : MonoBehaviour
 {
     public GameObject bottlePrefab;
-    public GameObject flarePrefab;
+    public GameObject glowstickPrefab;
 
     private Transform throwPoint;
     private int itemChoice = 0;
@@ -18,22 +18,22 @@ public class PlayerThrow : MonoBehaviour
 
     private void Update()
     {
-        if (InventoryManager.instance.bottleCount == 0 && InventoryManager.instance.flareCount == 0)
+        if (InventoryManager.instance.bottleCount == 0 && InventoryManager.instance.glowstickCount == 0)
         {
             itemChoice = 0;
         }
 
-        if (InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.flareCount >= 0)
+        if (InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.glowstickCount == 0)
         {
             itemChoice = 1;
         }
 
-        if (InventoryManager.instance.bottleCount == 0 && InventoryManager.instance.flareCount > 0)
+        if (InventoryManager.instance.bottleCount == 0 && InventoryManager.instance.glowstickCount > 0)
         {
             itemChoice = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.flareCount > 0)
+        if (Input.GetKeyDown(KeyCode.C) && InventoryManager.instance.bottleCount > 0 && InventoryManager.instance.glowstickCount > 0)
         {
             if (itemChoice == 2)
             {
@@ -53,13 +53,13 @@ public class PlayerThrow : MonoBehaviour
             if (itemChoice == 1 && InventoryManager.instance.bottleCount > 0)
             {
                 Instantiate(bottlePrefab, throwPoint.position, throwPoint.rotation);
-                //InventoryManager.instance.bottleCount -= 1;
+                InventoryManager.instance.bottleCount -= 1;
             }
 
-            if (itemChoice == 2 && InventoryManager.instance.flareCount > 0)
+            if (itemChoice == 2 && InventoryManager.instance.glowstickCount > 0)
             {
-                Instantiate(flarePrefab, throwPoint.position, throwPoint.rotation);
-                //InventoryManager.instance.flareCount -= 1;
+                Instantiate(glowstickPrefab, throwPoint.position, throwPoint.rotation);
+                InventoryManager.instance.glowstickCount -= 1;
             }
         }
     }

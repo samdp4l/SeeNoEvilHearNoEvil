@@ -43,7 +43,7 @@ public class LevelChange : MonoBehaviour
 
     void UnlockTwo()
     {
-        if (gameObject == GameObject.Find("Locked Door 2"))
+        if (gameObject == GameObject.Find("Locked Door 2A") || gameObject == GameObject.Find("Locked Door 2B"))
         {
             gameObject.GetComponent<DoorLock>().locked = false;
         }

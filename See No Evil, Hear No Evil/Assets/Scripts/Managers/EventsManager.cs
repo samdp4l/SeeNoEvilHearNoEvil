@@ -25,11 +25,32 @@ public class EventsManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PhaseOne();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PhaseTwo();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PhaseThree();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            PhaseFour();
+        }
+    }
+
     public void PhaseOne()
     {
         if (phase == 0)
         {
             phase = 1;
+            AudioManager.instance.Play("LevelChange");
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[0].GetComponent<EnemySpawn>().enabled = true;
@@ -44,6 +65,7 @@ public class EventsManager : MonoBehaviour
         if (phase == 1)
         {
             phase = 2;
+            AudioManager.instance.Play("LevelChange");
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[1].GetComponent<EnemySpawn>().enabled = true;
@@ -58,6 +80,7 @@ public class EventsManager : MonoBehaviour
         if (phase == 2)
         {
             phase = 3;
+            AudioManager.instance.Play("LevelChange");
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[2].GetComponent<EnemySpawn>().enabled = true;
@@ -72,6 +95,7 @@ public class EventsManager : MonoBehaviour
         if (phase == 3)
         {
             phase = 4;
+            AudioManager.instance.Play("LevelChange");
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             Debug.Log("Phase " + phase);

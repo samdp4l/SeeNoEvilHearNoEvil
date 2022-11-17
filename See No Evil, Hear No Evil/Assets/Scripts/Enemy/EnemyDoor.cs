@@ -28,7 +28,7 @@ public class EnemyDoor : MonoBehaviour
         foreach (Collider2D collider2D in collider2DArray)
         {
             InterfaceDoor door = collider2D.GetComponent<InterfaceDoor>();
-            if (door != null)
+            if (door != null && collider2D.GetComponent<DoorLock>().locked == false)
             {
                 if (collider2D.GetComponent<DoorLock>().verticalOpen == true)
                 {

@@ -104,6 +104,8 @@ GameObject:
   - component: {fileID: 8797475977821289954}
   - component: {fileID: 7252307049390974982}
   - component: {fileID: -3708136507053862838}
+  - component: {fileID: 7939096223454324779}
+  - component: {fileID: 4625629369904339838}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -246,8 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 5
   runSpeed: 10
+  sneakSpeed: 2
   rb: {fileID: 2636709142329220670}
-  scriptOn: 0
+  animator: {fileID: 7939096223454324779}
+  walking: 0
 --- !u!114 &4835113096372256472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   senseTimer: 30
+  cooldown: 8
   visionMode: 1
 --- !u!114 &4219207637132946429
 MonoBehaviour:
@@ -298,6 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2636709142329220643}
   sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
+  walkSonarFreq: 1
+  runSonarFreq: 0.3
+  enemySonarFreq: 1
+  running: 0
 --- !u!114 &8797475977821289954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2636709142329220643}
   interactRadius: 2
+  animator: {fileID: 7939096223454324779}
 --- !u!114 &7252307049390974982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,8 +349,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottlePrefab: {fileID: 3384971324293715460, guid: 8a602bd134d5f844589a464e3ee47fe9, type: 3}
-  flarePrefab: {fileID: 2239296928417223010, guid: 7e6427a9faaa9cf4190a542ceaad8382, type: 3}
-  throwPoint: {fileID: 0}
+  glowstickPrefab: {fileID: 2239296928417223010, guid: 7e6427a9faaa9cf4190a542ceaad8382, type: 3}
+--- !u!95 &7939096223454324779
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 842563785a9289842b19124870ef7c01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!81 &4625629369904339838
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
 --- !u!1 &2636709142829462707
 GameObject:
   m_ObjectHideFlags: 0

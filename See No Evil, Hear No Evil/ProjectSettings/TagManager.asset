@@ -10,7 +10,6 @@ TagManager:
   - Memory
   - Journal
   - Door
-  - Flare
   - Bottle
   - TriggerDoor
   - Wall1
@@ -18,6 +17,9 @@ TagManager:
   - Wall3
   - Distraction
   - EnemySonar
+  - Glowstick
+  - GlowstickProjectile
+  - HidingSpot
   layers:
   - Default
   - TransparentFX

@@ -6,14 +6,6 @@ public class Collectables : MonoBehaviour
 {
     public int collectionValue = 1;
 
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            CollectableManager.instance.ChangeCollection(collectionValue);
-        }
-    }*/
-
     public void CollectM()
     {
         InventoryManager.instance.CollectMemory(collectionValue);
@@ -24,9 +16,9 @@ public class Collectables : MonoBehaviour
         InventoryManager.instance.CollectJournal(collectionValue);
     }
 
-    public void CollectF()
+    public void CollectG()
     {
-        InventoryManager.instance.CollectFlare(collectionValue);
+        InventoryManager.instance.CollectGlowstick(collectionValue);
     }
 
     public void CollectB()

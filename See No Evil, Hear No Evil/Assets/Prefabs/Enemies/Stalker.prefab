@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1243251969561378732}
   - component: {fileID: 1243251969561378728}
   - component: {fileID: 1554270882113949053}
-  - component: {fileID: 1243251969561378726}
   - component: {fileID: 1243251969561378727}
   - component: {fileID: 1243251969561378723}
   - component: {fileID: 1243251969561378724}
@@ -145,20 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1243251969561378730}
   interactRadius: 5
---- !u!114 &1243251969561378726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243251969561378733}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc89806dfd7bcce4ea61da3ee601c738, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1243251969561378730}
-  sonarPrefab: {fileID: 3437814128136582608, guid: 611443da56a1e4241b7672b48e80b697, type: 3}
 --- !u!114 &1243251969561378727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38601469c66240541b6babe254951435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 4
-  chaseSpeed: 7
-  attackSpeed: 9
+  patrolSpeed: 3
+  chaseSpeed: 5
+  attackSpeed: 8
   pf: {fileID: 1243251969561378725}
   ap: {fileID: 1243251969561378724}
   points:
@@ -184,6 +169,7 @@ MonoBehaviour:
   chaseTarget: {fileID: 0}
   patrolling: 1
   attacking: 0
+  isChime: 0
 --- !u!114 &1243251969561378723
 MonoBehaviour:
   m_ObjectHideFlags: 0

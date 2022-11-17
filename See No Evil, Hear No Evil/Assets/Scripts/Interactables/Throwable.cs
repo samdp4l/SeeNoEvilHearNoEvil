@@ -32,6 +32,7 @@ public class Throwable : MonoBehaviour
     {
         if (effects == 0)
         {
+            AudioManager.instance.Play("BottleBreak");
             Instantiate(sonarPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Instantiate(brokenPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
@@ -45,7 +46,6 @@ public class Throwable : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collideInfo)
     {
-            Debug.Log("Collided with " + collideInfo.gameObject.name);
-            Effect();
+        Effect();
     }
 }

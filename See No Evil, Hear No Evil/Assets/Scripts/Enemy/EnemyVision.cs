@@ -8,6 +8,7 @@ public class EnemyVision : MonoBehaviour
     public int rayCount = 50;//change to make the edge more smooth
     public float viewDistance = 5f; //change value to change size
     public GameObject enemy;
+    public GameObject lastPos;
 
     [SerializeField] private LayerMask layerMask;
     private Mesh mesh;
@@ -31,6 +32,7 @@ public class EnemyVision : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3(0f, 0f, 0f);
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
@@ -63,12 +65,15 @@ public class EnemyVision : MonoBehaviour
                 //Hit no Object
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
             }
-            else if (raycastHit2D.collider.CompareTag("Player"))
+            else if (raycastHit2D.collider.CompareTag("Player") || raycastHit2D.collider.CompareTag("Glowstick"))
             {
+                GameObject thisPos;
                 //Hit Object
                 vertex = raycastHit2D.point;
+
+                thisPos = Instantiate(lastPos, raycastHit2D.collider.transform.position, raycastHit2D.collider.transform.rotation);
                 enemy.GetComponent<EnemyBehaviour>().patrolling = false;
-                enemy.GetComponent<EnemyBehaviour>().chaseTarget = raycastHit2D.collider.transform;
+                enemy.GetComponent<EnemyBehaviour>().chaseTarget = thisPos.transform;
             }
             else 
             {
@@ -102,6 +107,7 @@ public class EnemyVision : MonoBehaviour
 
     public void SetAimDirection(Vector3 lookDirec)
     {
-        startingAngle = GetAngleFromVectorFloat(lookDirec) - fov / 2f - 180f;
+        startingAngle = lookDirec.z - fov / 2f - 180f;
+        //startingAngle = GetAngleFromVectorFloat(lookDirec) - fov / 2f - 180f;
     }
 }

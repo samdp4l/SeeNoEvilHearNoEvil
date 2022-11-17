@@ -6,6 +6,7 @@ public class DestroyObject : MonoBehaviour
 {
     public float despawnTime;
     public GameObject player;
+
     private void Awake()
     {
         player = GameObject.Find("Player");

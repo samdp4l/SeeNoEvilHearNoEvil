@@ -43,7 +43,7 @@ public class SenseModes : MonoBehaviour
             CancelInvoke("Countdown");
             senseTimer = 30f;
             viewing.GetComponent<FieldOfView>().fov = 90f;
-            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 3f;
+            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 2f;
             hearingRange.transform.localScale = new Vector3(30f, 30f);
 
             GetComponent<StatsManager>().StopAllCoroutines();
@@ -82,19 +82,19 @@ public class SenseModes : MonoBehaviour
         if (senseTimer <= 0f)
         {
             viewing.GetComponent<FieldOfView>().fov = 10f;
-            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.5f;
+            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.25f;
             hearingRange.transform.localScale = new Vector3(15f, 15f);
         }
         else if (senseTimer <= 10f)
         {
             viewing.GetComponent<FieldOfView>().fov = 30f;
-            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 2f;
+            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.5f;
             hearingRange.transform.localScale = new Vector3(20f, 20f);
         }
         else if (senseTimer <= 20f)
         {
             viewing.GetComponent<FieldOfView>().fov = 60f;
-            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 2.5f;
+            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.75f;
             hearingRange.transform.localScale = new Vector3(25f, 25f);
         }
     }

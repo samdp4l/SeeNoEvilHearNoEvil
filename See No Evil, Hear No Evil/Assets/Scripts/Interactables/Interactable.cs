@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform; 
     public float interactRadius = 2.5f;
+    public Animator animator;
 
     private int collectionValue = 1;
 
@@ -24,53 +25,79 @@ public class Interactable : MonoBehaviour
             foreach (Collider2D collider2D in collider2DArray)
             {
                 InterfaceDoor door = collider2D.GetComponent<InterfaceDoor>();
+                InterfaceHiding hiding = collider2D.GetComponent<InterfaceHiding>();
+
+                if(collider2D.gameObject != null)
+                {
+                    animator.SetBool("Interact", true);
+                    Invoke("OffAni", 0.3f);
+                }
 
                 if (collider2D.gameObject.CompareTag("Door"))
                 {
-                    //There is a Door in range
                     door.ToggleDoor();
                 }
 
                 if (collider2D.gameObject.CompareTag("TriggerDoor"))
                 {
-                    //There is a Door in range
                     door.ToggleDoor();
                     EventsManager.instance.PhaseOne();
                 }
 
                 if (collider2D.gameObject.CompareTag("Memory"))
                 {
-                    //collectable.CollectM();
                     InventoryManager.instance.CollectMemory(collectionValue);
                     Destroy(collider2D.gameObject);
                 }
 
                 if (collider2D.gameObject.CompareTag("Journal"))
                 {
-                    //collectable.CollectJ();
+                    AudioManager.instance.Play("WriteJournal");
                     InventoryManager.instance.CollectJournal(collectionValue);
                     Destroy(collider2D.gameObject);
                 }
 
-                if (collider2D.gameObject.CompareTag("Flare"))
+                if (collider2D.gameObject.CompareTag("Glowstick"))
                 {
-                    //collectable.CollectF();
-                    InventoryManager.instance.CollectFlare(collectionValue);
-                    Destroy(collider2D.gameObject);
+                    if (InventoryManager.instance.glowstickCount < InventoryManager.instance.throwableLimit)
+                    {
+                        InventoryManager.instance.CollectGlowstick(collectionValue);
+                        Destroy(collider2D.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("Can't carry anymore glowsticks");
+                    }
                 }
 
                 if (collider2D.gameObject.CompareTag("Bottle"))
                 {
-                    //collectable.CollectB();
-                    InventoryManager.instance.CollectBottle(collectionValue);
-                    Destroy(collider2D.gameObject);
+                    if (InventoryManager.instance.bottleCount < InventoryManager.instance.throwableLimit)
+                    {
+                        InventoryManager.instance.CollectBottle(collectionValue);
+                        Destroy(collider2D.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("Can't carry anymore bottles");
+                    }
                 }
 
                 if (collider2D.gameObject.CompareTag("Distraction"))
                 {
                     collider2D.gameObject.GetComponent<Distraction>().Activate();
                 }
+
+                if (collider2D.gameObject.CompareTag("HidingSpot"))
+                {
+                    hiding.toggleIsHiding();
+                }
             }
         }
+    }
+
+    void OffAni()
+    {
+        animator.SetBool("Interact", false);
     }
 }

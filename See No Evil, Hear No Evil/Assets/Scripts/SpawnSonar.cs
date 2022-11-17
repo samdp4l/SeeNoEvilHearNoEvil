@@ -6,17 +6,31 @@ public class SpawnSonar : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject sonarPrefab;
+    public float walkSonarFreq = 1f;
+    public float runSonarFreq = 0.3f;
+    public float enemySonarFreq = 1f;
+    [HideInInspector]
+    public bool running = false;
 
     void OnEnable()
     {
         if (gameObject.CompareTag("Enemy") && GetComponent<HearingDetection>().inRange == true)
         {
-            InvokeRepeating("spawnSonar", 0.5f, 0.7f);
+            InvokeRepeating("SonarSpawn", 0f, enemySonarFreq);
         }
 
-        if (gameObject.CompareTag("Player") && GetComponent<PlayerMovement>().scriptOn == true)
+        if (gameObject.CompareTag("Player"))
         {
-            InvokeRepeating("spawnSonar", 0f, 0.3f);
+            if (running == true)
+            {
+                CancelInvoke();
+                InvokeRepeating("SonarSpawn", 0f, runSonarFreq);
+            }
+            else if (running == false)
+            {
+                CancelInvoke();
+                InvokeRepeating("SonarSpawn", 0f, walkSonarFreq);
+            }
         }
     }
 
@@ -33,7 +47,7 @@ public class SpawnSonar : MonoBehaviour
         }
     }
 
-    void spawnSonar()
+    void SonarSpawn()
     {
         Instantiate(sonarPrefab, spawnPoint.position, spawnPoint.rotation);
     }

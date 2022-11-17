@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     public TextMeshProUGUI text;
     public int throwableLimit = 2;
     public int journalCollection = 0;
-    public int flareCount = 0;
+    public int glowstickCount = 0;
     public int bottleCount = 0;
 
     private int memoryCollection = 0;
@@ -44,29 +44,15 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Journal: " +journalCollection);
     }
 
-    public void CollectFlare(int collectionValue)
+    public void CollectGlowstick(int collectionValue)
     {
-        if (flareCount < throwableLimit)
-        {
-            flareCount += collectionValue;
-            Debug.Log("Flare: " + flareCount);
-        }
-        else 
-        {
-            Debug.Log("Can't carry anymore flares");
-        }
+        glowstickCount += collectionValue;
+        Debug.Log("Glowstick: " + glowstickCount);
     }
 
     public void CollectBottle(int collectionValue)
     {
-        if (bottleCount < throwableLimit)
-        {
-            bottleCount += collectionValue;
-            Debug.Log("Bottle: " + bottleCount);
-        }
-        else
-        {
-            Debug.Log("Can't carry anymore bottles");
-        }
+        bottleCount += collectionValue;
+        Debug.Log("Bottle: " + bottleCount);
     }
 }

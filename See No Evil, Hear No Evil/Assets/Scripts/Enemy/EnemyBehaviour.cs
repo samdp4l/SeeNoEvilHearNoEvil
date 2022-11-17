@@ -16,16 +16,41 @@ public class EnemyBehaviour : MonoBehaviour
     public bool patrolling = true;
     [HideInInspector]
     public bool attacking = false;
+    public bool isChime = true;
 
     private int currentPoint = 0;
+    private GameObject[] enemies;
+    private bool reset = false;
+    private bool chase = false;
+
+    private void Awake()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
+    private void Start()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        }
+        if (isChime)
+        {
+            AudioManager.instance.Play("ChimeWalk");
+        }
+    }
 
     private void Update()
     {
-        if (ap.desiredVelocity == Vector3.zero)
+        if (ap.desiredVelocity == Vector3.zero && reset == false)
         {
-            patrolling = true;
-            attacking = false;
-            pf.target = points[currentPoint];
+            if (isChime)
+            {
+                AudioManager.instance.Stop("ChimeWalk");
+                AudioManager.instance.Stop("ChimeChase");
+                reset = true;
+            }
+            Invoke("Patrol", 3f);
         }
 
         if (patrolling == true)
@@ -35,6 +60,13 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (patrolling == false)
         {
+            if (isChime && chase == false)
+            {
+                chase = true;
+                AudioManager.instance.Stop("ChimeWalk");
+                AudioManager.instance.Play("ChimeChase");
+            }
+
             pf.target = chaseTarget;
 
             if (attacking == false)
@@ -51,8 +83,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     void ChangePoint()
     {
-        pf.enabled = true;
-
         if (currentPoint < points.Count - 1 && patrolling)
         {
             currentPoint++;
@@ -63,6 +93,22 @@ public class EnemyBehaviour : MonoBehaviour
             currentPoint = 0;
             pf.target = points[0];
         }
+    }
+
+    public void Patrol()
+    {
+        if (isChime)
+        {
+            AudioManager.instance.Play("ChimeWalk");
+            AudioManager.instance.Stop("ChimeChase");
+        }
+        reset = false;
+        chase = false;
+        patrolling = true;
+        attacking = false;
+
+        pf.enabled = true;
+        pf.target = points[currentPoint];
     }
 
     private void OnTriggerEnter2D(Collider2D collideInfo)
@@ -77,11 +123,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collideInfo.gameObject.CompareTag("Player"))
         {
-            patrolling = true;
-            attacking = false;
-
+            if (isChime)
+            {
+                AudioManager.instance.Stop("ChimeWalk");
+                AudioManager.instance.Stop("ChimeChase");
+            }
             pf.enabled = false;
-            Invoke("ChangePoint", 3f);
+            Invoke("Patrol", 3f);
         }
     }
 }

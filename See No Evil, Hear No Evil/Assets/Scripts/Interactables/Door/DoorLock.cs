@@ -24,7 +24,8 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         openDoorLimitsDown = new JointAngleLimits2D { min = 90f, max = 90f };
         closeDoorLimits = new JointAngleLimits2D { min = 0f, max = 0f };
 
-        CloseDoor();
+        isOpen = false;
+        hingeJoint2D.limits = closeDoorLimits;
     }
 
     public void OpenDoorUp()
@@ -33,6 +34,8 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         {
             isOpen = true;
             hingeJoint2D.limits = openDoorLimitsUp;
+            AudioManager.instance.Play("DoorOpen");
+            Invoke("StopSound", 0.3f);
 
             CancelInvoke("CloseDoor");
             Invoke("CloseDoor", 5f);
@@ -40,6 +43,10 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
             Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
             Invoke("EnableCollision", 0.3f);
+        }
+        else if (locked == true)
+        {
+            AudioManager.instance.Play("DoorLocked");
         }
     }
 
@@ -49,7 +56,9 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         {
             isOpen = true;
             hingeJoint2D.limits = openDoorLimitsDown;
-           
+            AudioManager.instance.Play("DoorOpen");
+            Invoke("StopSound", 0.3f);
+
             CancelInvoke("CloseDoor");
             Invoke("CloseDoor", 5f);
 
@@ -57,10 +66,17 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
 
             Invoke("EnableCollision", 0.3f);
         }
+        else if (locked == true)
+        {
+            AudioManager.instance.Play("DoorLocked");
+        }
     }
 
     public void CloseDoor()
     {
+        AudioManager.instance.Play("DoorClose");
+        Invoke("StopSound", 0.3f);
+
         CancelInvoke("CloseDoor");
 
         isOpen = false;
@@ -106,5 +122,11 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     void EnableCollision()
     {
         Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), false);
+    }
+
+    void StopSound()
+    {
+        AudioManager.instance.Stop("DoorOpen");
+        AudioManager.instance.Stop("DoorClose");
     }
 }

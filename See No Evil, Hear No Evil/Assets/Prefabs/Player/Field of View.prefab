@@ -99,5 +99,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 136
+  rayCount: 100
   fov: 90
   viewDistance: 25
