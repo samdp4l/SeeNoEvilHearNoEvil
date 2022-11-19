@@ -21,8 +21,8 @@ public class SenseModes : MonoBehaviour
         viewing = GameObject.Find("Field of View");
         viewingCircle = GameObject.Find("Field of View Circle");
         hearingRange = GameObject.Find("Hearing Range");
-        eyeIcon = GameObject.Find("Eye");
-        earIcon = GameObject.Find("Ear");
+        eyeIcon = GameObject.Find("Eye Icon");
+        earIcon = GameObject.Find("Ear Icon");
     }
 
     private void Start()

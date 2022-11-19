@@ -28,11 +28,23 @@ public class Throwable : MonoBehaviour
         Invoke("Effect", 0.4f);
     }
 
+    private void Update()
+    {
+        if (player.GetComponent<SenseModes>().visionMode == true)
+        {
+            GetComponent<AudioSource>().volume = 0f;
+        }
+        else
+        {
+            GetComponent<AudioSource>().volume = 0.2f;
+        }
+    }
+
     void Effect()
     {
         if (effects == 0)
         {
-            AudioManager.instance.Play("BottleBreak");
+            GetComponent<AudioSource>().Play();
             Instantiate(sonarPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Instantiate(brokenPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);

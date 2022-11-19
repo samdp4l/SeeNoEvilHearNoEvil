@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
-    public float fov = 90f;
+    public float fov = 60f;
     public int rayCount = 50;//change to make the edge more smooth
     public float viewDistance = 5f; //change value to change size
     public GameObject enemy;
@@ -14,6 +14,7 @@ public class EnemyVision : MonoBehaviour
     private Mesh mesh;
     private Vector3 origin;
     private float startingAngle;
+    private GameObject black;
 
     public static Vector3 GetVectorFromAngle(float angle)
     {
@@ -28,6 +29,11 @@ public class EnemyVision : MonoBehaviour
         if (n < 0) n += 360;
 
         return n;
+    }
+
+    private void Awake()
+    {
+        black = GameObject.Find("Black");
     }
 
     private void Start()
@@ -74,6 +80,12 @@ public class EnemyVision : MonoBehaviour
                 thisPos = Instantiate(lastPos, raycastHit2D.collider.transform.position, raycastHit2D.collider.transform.rotation);
                 enemy.GetComponent<EnemyBehaviour>().patrolling = false;
                 enemy.GetComponent<EnemyBehaviour>().chaseTarget = thisPos.transform;
+
+                if (raycastHit2D.collider.CompareTag("Player") && black.GetComponent<BlinkingEffect>().hit == false)
+                {
+                    black.GetComponent<BlinkingEffect>().hit = true;
+                    black.GetComponent<BlinkingEffect>().Blink();
+                }
             }
             else 
             {
@@ -107,7 +119,6 @@ public class EnemyVision : MonoBehaviour
 
     public void SetAimDirection(Vector3 lookDirec)
     {
-        startingAngle = lookDirec.z - fov / 2f - 180f;
-        //startingAngle = GetAngleFromVectorFloat(lookDirec) - fov / 2f - 180f;
+        startingAngle = lookDirec.z + fov / 2f + 90f;
     }
 }

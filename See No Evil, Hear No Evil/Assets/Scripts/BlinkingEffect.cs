@@ -5,11 +5,13 @@ using UnityEngine;
 public class BlinkingEffect : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    public bool hit;
+    public bool hit = false;
     public Color startColor = Color.black;
     public Color endColor = Color.red;
     [Range(0, 10)]
-    public float speed = 1;
+    public float speed = 1.5f;
+
+    private bool blinking = false;
 
     private void Start()
     {
@@ -17,25 +19,27 @@ public class BlinkingEffect : MonoBehaviour
         sprite.color = startColor;
     }
 
-    public void Blink()
+    private void Update()
     {
-        if (hit == true)
+        if (blinking == true)
         {
             sprite.color = Color.Lerp(startColor, endColor, Mathf.PingPong(Time.time * speed, 1));
-            //sprite.color = endColor;
-            //Debug.Log("red");
-
         }
         else
         {
             sprite.color = startColor;
-            //Debug.Log("NOY red");
-
         }
     }
 
-    private void Update()
+    public void Blink()
     {
-        //Debug.Log(Mathf.PingPong(Time.time * speed, 1));
+        blinking = true;
+        Invoke("StopBlink", 2f);
+    }
+
+    void StopBlink()
+    {
+        blinking = false;
+        hit = false;
     }
 }

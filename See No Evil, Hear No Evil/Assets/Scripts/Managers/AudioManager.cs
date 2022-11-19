@@ -22,23 +22,36 @@ public class AudioManager : MonoBehaviour
             a.source.volume = a.volume;
             a.source.pitch = a.pitch;
             a.source.loop = a.loop;
+            a.source.maxDistance = 8;
+        }
+    }
+
+    private void Update()
+    {
+        foreach (Audio a in audioClips)
+        {
+            if (player.GetComponent<SenseModes>().visionMode == true)
+            {
+                a.source.volume = 0;
+            }
+            else
+            {
+                a.source.volume = a.volume;
+            }
         }
     }
 
     public void Play(string name)
     {
-        if (player.GetComponent<SenseModes>().visionMode == false)
+        Audio a = Array.Find(audioClips, audio => audio.name == name);
+
+        if (a == null)
         {
-            Audio a = Array.Find(audioClips, audio => audio.name == name);
-
-            if (a == null)
-            {
-                Debug.Log("Not Found");
-                return;
-            }
-
-            a.source.Play();
+            Debug.Log("Not Found");
+            return;
         }
+
+        a.source.Play();
     }
 
     public void Stop(string name)

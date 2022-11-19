@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2630634451930209319}
   - component: {fileID: 2630634451930209316}
   - component: {fileID: 3602968546034597657}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EnemyFieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c50654818c6a54bb756b16132885d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: 90
+  fov: 60
   rayCount: 50
   viewDistance: 20
   enemy: {fileID: 0}

@@ -11,12 +11,30 @@ public class Distraction : MonoBehaviour
 
     private bool cooldown = false;
     private int currentCount = 0;
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+    }
+
+    private void Update()
+    {
+        if (player.GetComponent<SenseModes>().visionMode == true)
+        {
+            GetComponent<AudioSource>().volume = 0f;
+        }
+        else
+        {
+            GetComponent<AudioSource>().volume = 0.1f;
+        }
+    }
 
     public void Activate()
     {
         if (cooldown == false)
         {
-            AudioManager.instance.Play("TVStatic");
+            GetComponent<AudioSource>().Play();
             cooldown = true;
             currentCount = 0;
             InvokeRepeating("SpawnSonar", 0f, spawnFreq);
@@ -34,7 +52,7 @@ public class Distraction : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.Stop("TVStatic");
+            GetComponent<AudioSource>().Stop();
             CancelInvoke("SpawnSonar");
         }
     }

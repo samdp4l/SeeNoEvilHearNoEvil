@@ -15,7 +15,6 @@ public class StatsManager : MonoBehaviour
     public float dotTimer = 30f;
     public float dotFreq = 1f;
     public int dotDmg = 5;
-
     [HideInInspector]
     public bool healthDot = false;
 
@@ -28,7 +27,7 @@ public class StatsManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.gameManager.playerSanity.Sanity <= 0 || Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.gameManager.playerSanity.Sanity <= 0)
         {
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);

@@ -20,12 +20,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     private int currentPoint = 0;
     private GameObject[] enemies;
-    private bool reset = false;
     private bool chase = false;
+    private GameObject player;
 
     private void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        player = GameObject.Find("Player");
     }
 
     private void Start()
@@ -34,23 +35,29 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }
-        if (isChime)
-        {
-            AudioManager.instance.Play("ChimeWalk");
-        }
+
+        Patrol();
     }
 
     private void Update()
     {
-        if (ap.desiredVelocity == Vector3.zero && reset == false)
+        if (player.GetComponent<SenseModes>().visionMode == true)
+        {
+            GetComponent<AudioSource>().volume = 0f;
+        }
+        else
+        {
+            GetComponent<AudioSource>().volume = 0.2f;
+        }
+
+        if (ap.desiredVelocity == Vector3.zero)
         {
             if (isChime)
             {
-                AudioManager.instance.Stop("ChimeWalk");
-                AudioManager.instance.Stop("ChimeChase");
-                reset = true;
+                GetComponent<AudioSource>().Stop();
             }
-            Invoke("Patrol", 3f);
+
+            Invoke("Patrol", 4f);
         }
 
         if (patrolling == true)
@@ -63,21 +70,12 @@ public class EnemyBehaviour : MonoBehaviour
             if (isChime && chase == false)
             {
                 chase = true;
-                AudioManager.instance.Stop("ChimeWalk");
-                AudioManager.instance.Play("ChimeChase");
+                GetComponent<AudioSource>().pitch = 2f;
+                GetComponent<AudioSource>().Play();
             }
 
             pf.target = chaseTarget;
-
-            if (attacking == false)
-            {
-                ap.maxSpeed = chaseSpeed;
-            }
-
-            if (attacking == true)
-            {
-                ap.maxSpeed = attackSpeed;
-            }
+            ap.maxSpeed = chaseSpeed;
         }
     }
 
@@ -99,10 +97,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (isChime)
         {
-            AudioManager.instance.Play("ChimeWalk");
-            AudioManager.instance.Stop("ChimeChase");
+            GetComponent<AudioSource>().pitch = 1f;
+            GetComponent<AudioSource>().Play();
         }
-        reset = false;
+
         chase = false;
         patrolling = true;
         attacking = false;
@@ -125,11 +123,10 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (isChime)
             {
-                AudioManager.instance.Stop("ChimeWalk");
-                AudioManager.instance.Stop("ChimeChase");
+                GetComponent<AudioSource>().Stop();
             }
             pf.enabled = false;
-            Invoke("Patrol", 3f);
+            Invoke("Patrol", 4f);
         }
     }
 }

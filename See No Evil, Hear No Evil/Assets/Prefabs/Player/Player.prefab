@@ -246,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d5ff0e899a6f04e9aa2c4f96fcf2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 5
-  runSpeed: 10
+  startSpeed: 4
+  runSpeed: 6
   sneakSpeed: 2
   rb: {fileID: 2636709142329220670}
   animator: {fileID: 7939096223454324779}
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2636709142329220643}
   sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
-  walkSonarFreq: 1
+  walkSonarFreq: 4
   runSonarFreq: 0.3
   enemySonarFreq: 1
   running: 0
