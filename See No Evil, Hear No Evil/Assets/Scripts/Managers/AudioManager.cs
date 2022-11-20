@@ -8,6 +8,10 @@ public class AudioManager : MonoBehaviour
     public GameObject player;
     public Audio[] audioClips;
 
+    public AudioSource heartbeatNormal;
+    public AudioSource heartbeatFast;
+    public AudioSource ambientSounds;
+
     void Awake()
     {
         if (instance == null)
@@ -37,6 +41,33 @@ public class AudioManager : MonoBehaviour
             else
             {
                 a.source.volume = a.volume;
+            }
+        }
+
+        if (player.GetComponent<SenseModes>().visionMode == true)
+        {
+            if (GameManager.gameManager.playerSanity.Sanity > GameManager.gameManager.playerSanity.MaxSanity / 2)
+            {
+                heartbeatNormal.volume = 0.8f;
+                heartbeatFast.volume = 0f;
+            }
+            else
+            {
+                heartbeatNormal.volume = 0f;
+                heartbeatFast.volume = 0.8f;
+            }
+        }
+        else
+        {
+            if (GameManager.gameManager.playerSanity.Sanity > GameManager.gameManager.playerSanity.MaxSanity / 2)
+            {
+                heartbeatNormal.volume = 0.5f;
+                heartbeatFast.volume = 0f;
+            }
+            else
+            {
+                heartbeatNormal.volume = 0f;
+                heartbeatFast.volume = 0.5f;
             }
         }
     }

@@ -18,6 +18,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject journalText3;
     public GameObject journalText4;
 
+    private GameObject player;
+    private GameObject gameManager;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player");
+        gameManager = GameObject.Find("Game Manager");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,13 +44,19 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        player.SetActive(true);
         pauseMenuUI.SetActive(false);
+        gameManager.GetComponent<AudioListener>().enabled = false;
+
         Time.timeScale = 1f;
         GameisPaused = false;
     }
     void Pause()
     {
+        player.SetActive(false);
         pauseMenuUI.SetActive(true);
+        gameManager.GetComponent<AudioListener>().enabled = true;
+
         Time.timeScale = 0f;
         GameisPaused = true;
     }

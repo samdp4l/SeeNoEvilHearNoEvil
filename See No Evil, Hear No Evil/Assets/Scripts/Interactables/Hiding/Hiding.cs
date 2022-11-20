@@ -11,6 +11,7 @@ public class Hiding : MonoBehaviour, InterfaceHiding
     private GameObject player;
     private GameObject fov;
     private GameObject fovc;
+    private GameObject gameManager;
     private bool isHidingNow = false;
 
     public void Awake()
@@ -19,6 +20,7 @@ public class Hiding : MonoBehaviour, InterfaceHiding
         player = GameObject.Find("Player");
         fov = GameObject.Find("Field of View");
         fovc = GameObject.Find("Field of View Circle");
+        gameManager = GameObject.Find("Game Manager");
         //playerMovementSpeed.speed = 5f;
         isNotHiding();
     }
@@ -39,6 +41,8 @@ public class Hiding : MonoBehaviour, InterfaceHiding
         fov.SetActive(false);
         fovc.SetActive(false);
 
+        gameManager.GetComponent<AudioListener>().enabled = true;
+
         openedSprite.enabled = false;
         closedSprite.enabled = true;
     }
@@ -50,6 +54,8 @@ public class Hiding : MonoBehaviour, InterfaceHiding
         player.SetActive(true);
         fov.SetActive(true);
         fovc.SetActive(true);
+
+        gameManager.GetComponent<AudioListener>().enabled = false;
 
         openedSprite.enabled = true;
         closedSprite.enabled = false;

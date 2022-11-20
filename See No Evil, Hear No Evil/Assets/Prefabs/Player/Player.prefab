@@ -246,12 +246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d5ff0e899a6f04e9aa2c4f96fcf2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 4
+  startSpeed: 3
   runSpeed: 6
   sneakSpeed: 2
   rb: {fileID: 2636709142329220670}
   animator: {fileID: 7939096223454324779}
+  moving: 0
   walking: 0
+  running: 0
+  sneaking: 0
 --- !u!114 &4835113096372256472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,17 +299,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2636709142329220655}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc89806dfd7bcce4ea61da3ee601c738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2636709142329220643}
   sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
-  walkSonarFreq: 4
+  walkSonarFreq: 3
   runSonarFreq: 0.3
   enemySonarFreq: 1
-  running: 0
+  trigger: 1
 --- !u!114 &8797475977821289954
 MonoBehaviour:
   m_ObjectHideFlags: 0

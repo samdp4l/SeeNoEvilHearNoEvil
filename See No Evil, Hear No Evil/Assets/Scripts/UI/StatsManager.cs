@@ -54,6 +54,7 @@ public class StatsManager : MonoBehaviour
 
     public void PlayerTakesDmg(int dmg)
     {
+        AudioManager.instance.Play("PlayerHit");
         GameManager.gameManager.playerSanity.Sanitydmg(dmg);
         sanityBar.SetSanity(GameManager.gameManager.playerSanity.Sanity);
     }

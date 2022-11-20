@@ -83,7 +83,6 @@ public class EventsManager : MonoBehaviour
             AudioManager.instance.Play("LevelChange");
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
-            enemySpawnpoints[2].GetComponent<EnemySpawn>().enabled = true;
             Debug.Log("Phase " + phase);
 
             Invoke("RescanGrid", 0.2f);

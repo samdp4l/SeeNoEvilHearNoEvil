@@ -11,7 +11,13 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     [HideInInspector]
+    public bool moving;
+    [HideInInspector]
     public bool walking;
+    [HideInInspector]
+    public bool running;
+    [HideInInspector]
+    public bool sneaking;
 
     private float speed;
     private bool stamRegenCD = false;
@@ -26,35 +32,30 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);
+            moving = true;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
+            moving = true;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += new Vector3(0f, -speed * Time.deltaTime, 0f);
+            moving = true;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
+            moving = true;
         }
 
-        if (walking == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+        if (Input.anyKey == false)
         {
-            AudioManager.instance.Play("PlayerWalk");
-            animator.SetBool("Walking", true);
-            walking = true;
-        }
-
-        else if (Input.anyKey == false)
-        {
-            AudioManager.instance.Stop("PlayerWalk");
-            animator.SetBool("Walking", false);
-            walking = false;
+            moving = false;
         }
 
         rb.rotation = GetComponent<LookDir>().angle - 90f;
@@ -62,56 +63,70 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+         if (Input.GetKey(KeyCode.LeftControl) && moving == true)
         {
-            AudioManager.instance.Stop("PlayerWalk");
-            AudioManager.instance.Stop("PlayerRun");
-            GetComponent<SpawnSonar>().enabled = false;
+            if (sneaking == false)
+            {
+                walking = false;
+                running = false;
+                sneaking = true;
+
+                AudioManager.instance.Stop("PlayerWalk");
+                AudioManager.instance.Stop("PlayerRun");
+            }
+
             speed = sneakSpeed;
+
             Invoke("StartStamRegen", 3f);
         }
-
-        else if (Input.GetKeyDown(KeyCode.LeftShift) && GameManager.gameManager.playerStamina.Stamina > 0 && GetComponent<SpawnSonar>().running == false)
+        else if (Input.GetKey(KeyCode.LeftShift) && GameManager.gameManager.playerStamina.Stamina > 0 && moving == true)
         {
+            if (running == false)
+            {
+                walking = false;
+                running = true;
+                sneaking = false;
+
+                AudioManager.instance.Stop("PlayerWalk");
+                AudioManager.instance.Play("PlayerRun");
+            }
+
             animator.SetBool("Running", true);
-            AudioManager.instance.Stop("PlayerWalk");
-            AudioManager.instance.Play("PlayerRun");
-            GetComponent<SpawnSonar>().running = true;
-            GetComponent<SpawnSonar>().enabled = false;
-            GetComponent<SpawnSonar>().enabled = true;
-        }
 
-        else if ((Input.GetKeyUp(KeyCode.LeftShift) || GameManager.gameManager.playerStamina.Stamina <= 0) && GetComponent<SpawnSonar>().running == true)
-        {
-            animator.SetBool("Running", false);
-            AudioManager.instance.Play("PlayerWalk");
-            AudioManager.instance.Stop("PlayerRun");
-            GetComponent<SpawnSonar>().running = false;
-            GetComponent<SpawnSonar>().enabled = false;
-            GetComponent<SpawnSonar>().enabled = true;
-        }
-
-        else if (Input.GetKey(KeyCode.LeftShift) && GameManager.gameManager.playerStamina.Stamina > 0)
-        {
-            CancelInvoke("StartStamRegen");
-            stamRegenCD = true;
             speed = runSpeed;
 
-            GetComponent<StatsManager>().PlayerUseStamina(30f);
+            stamRegenCD = true;
+            CancelInvoke("StartStamRegen");
+            gameObject.GetComponent<StatsManager>().PlayerUseStamina(30f);
         }
-
-        else if (walking == true)
+        else if (moving == true)
         {
+            if (walking == false)
+            {
+                walking = true;
+                running = false;
+                sneaking = false;
+
+                gameObject.GetComponent<SpawnSonar>().trigger = true;
+
+                AudioManager.instance.Play("PlayerWalk");
+                AudioManager.instance.Stop("PlayerRun");
+            }
+
+            animator.SetBool("Walking", true);
             speed = startSpeed;
-            GetComponent<SpawnSonar>().enabled = true;
+
             Invoke("StartStamRegen", 3f);
         }
-
-        else if (walking == false)
+        else 
         {
+            walking = false;
+            running = false;
+            sneaking = false;
+
             AudioManager.instance.Stop("PlayerWalk");
             AudioManager.instance.Stop("PlayerRun");
-            GetComponent<SpawnSonar>().enabled = false;
+
             Invoke("StartStamRegen", 3f);
         }
 
