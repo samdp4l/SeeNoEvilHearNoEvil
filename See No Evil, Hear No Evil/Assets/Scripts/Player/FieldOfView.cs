@@ -33,6 +33,7 @@ public class FieldOfView : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
+        GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
     private void Update()

@@ -7,6 +7,10 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     public bool verticalOpen = true;
     public bool locked = false;
     public GameObject door;
+    public AudioSource openSound;
+    public AudioSource closeSound;
+    public AudioSource lockedSound;
+
 
     private GameObject player;
     private HingeJoint2D hingeJoint2D;
@@ -28,14 +32,27 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         hingeJoint2D.limits = closeDoorLimits;
     }
 
+    private void Update()
+    {
+        if (player.GetComponent<SenseModes>().visionMode == true)
+        {
+            openSound.volume = 0f;
+            closeSound.volume = 0f;
+        }
+        else
+        {
+            openSound.volume = 0.5f;
+            closeSound.volume = 0.5f;
+        }
+    }
+
     public void OpenDoorUp()
     {
         if (isOpen == false && locked == false)
         {
             isOpen = true;
             hingeJoint2D.limits = openDoorLimitsUp;
-            AudioManager.instance.Play("DoorOpen");
-            Invoke("StopSound", 0.3f);
+            openSound.Play();
 
             CancelInvoke("CloseDoor");
             Invoke("CloseDoor", 5f);
@@ -46,7 +63,7 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         }
         else if (locked == true)
         {
-            AudioManager.instance.Play("DoorLocked");
+            lockedSound.Play();
         }
     }
 
@@ -56,8 +73,7 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         {
             isOpen = true;
             hingeJoint2D.limits = openDoorLimitsDown;
-            AudioManager.instance.Play("DoorOpen");
-            Invoke("StopSound", 0.3f);
+            openSound.Play();
 
             CancelInvoke("CloseDoor");
             Invoke("CloseDoor", 5f);
@@ -68,14 +84,13 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
         }
         else if (locked == true)
         {
-            AudioManager.instance.Play("DoorLocked");
+            lockedSound.Play();
         }
     }
 
     public void CloseDoor()
     {
-        AudioManager.instance.Play("DoorClose");
-        Invoke("StopSound", 0.3f);
+        closeSound.Play();
 
         CancelInvoke("CloseDoor");
 
@@ -122,11 +137,5 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
     void EnableCollision()
     {
         Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>(), false);
-    }
-
-    void StopSound()
-    {
-        AudioManager.instance.Stop("DoorOpen");
-        AudioManager.instance.Stop("DoorClose");
     }
 }

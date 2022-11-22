@@ -26,7 +26,6 @@ public class AudioManager : MonoBehaviour
             a.source.volume = a.volume;
             a.source.pitch = a.pitch;
             a.source.loop = a.loop;
-            a.source.maxDistance = 8;
         }
     }
 

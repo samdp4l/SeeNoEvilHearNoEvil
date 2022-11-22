@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SenseModes : MonoBehaviour
 {
     public float senseTimer = 30f;
-    public float cooldown = 15f;
+    public float totalCooldown = 8f;
     [HideInInspector]
     public bool visionMode = true;
 
@@ -15,6 +16,8 @@ public class SenseModes : MonoBehaviour
     private GameObject hearingRange;
     private GameObject eyeIcon;
     private GameObject earIcon;
+    private GameObject cooldownText;
+    private float currentCooldown;
 
     private void Awake()
     {
@@ -23,10 +26,14 @@ public class SenseModes : MonoBehaviour
         hearingRange = GameObject.Find("Hearing Range");
         eyeIcon = GameObject.Find("Eye Icon");
         earIcon = GameObject.Find("Ear Icon");
+        cooldownText = GameObject.Find("Sense CD");
     }
 
     private void Start()
     {
+        currentCooldown = totalCooldown;
+        cooldownText.SetActive(false);
+
         hearingRange.SetActive(false);
         earIcon.SetActive(false);
 
@@ -38,7 +45,9 @@ public class SenseModes : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && senseCD == false)
         {
             senseCD = true;
-            Invoke("OffCooldown", cooldown);
+            InvokeRepeating("OffCooldown", 1f, 1f);
+
+            cooldownText.SetActive(true);
 
             CancelInvoke("Countdown");
             senseTimer = 30f;
@@ -73,6 +82,11 @@ public class SenseModes : MonoBehaviour
                 eyeIcon.SetActive(true);
             }
         }
+
+        if (senseCD == true)
+        {
+            cooldownText.GetComponent<TextMeshProUGUI>().text = currentCooldown.ToString();
+        }
     }
 
     void Countdown()
@@ -101,6 +115,14 @@ public class SenseModes : MonoBehaviour
 
     void OffCooldown()
     {
-        senseCD = false;
+        currentCooldown -= 1f;
+
+        if (currentCooldown <= 0f)
+        {
+            senseCD = false;
+            CancelInvoke("OffCooldown");
+            cooldownText.SetActive(false);
+            currentCooldown = totalCooldown;
+        }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5013499268563012603}
   - component: {fileID: 636860670239980137}
   - component: {fileID: 1895088197448344373}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Glowstick Projectile
   m_TagString: GlowstickProjectile
   m_Icon: {fileID: 0}

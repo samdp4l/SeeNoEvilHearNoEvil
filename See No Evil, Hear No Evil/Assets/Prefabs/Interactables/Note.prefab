@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2981153745484246280}
   - component: {fileID: 6112695491746132211}
   - component: {fileID: -3027458569027516073}
+  - component: {fileID: -2433989381342926285}
   m_Layer: 11
   m_Name: Note
   m_TagString: Journal
@@ -101,3 +102,18 @@ CircleCollider2D:
   m_Offset: {x: -0.001065582, y: 0}
   serializedVersion: 2
   m_Radius: 0.43327853
+--- !u!114 &-2433989381342926285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929356375061307239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a584a3fa37318047a51adf35630af82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 2.5
+  normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}

@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2636709142329220643}
-  interactRadius: 2
+  interactRadius: 1.75
   animator: {fileID: 7939096223454324779}
 --- !u!114 &7252307049390974982
 MonoBehaviour:

@@ -36,7 +36,7 @@ public class Throwable : MonoBehaviour
         }
         else
         {
-            GetComponent<AudioSource>().volume = 0.2f;
+            GetComponent<AudioSource>().volume = 0.4f;
         }
     }
 
@@ -47,7 +47,8 @@ public class Throwable : MonoBehaviour
             GetComponent<AudioSource>().Play();
             Instantiate(sonarPrefab, gameObject.transform.position, gameObject.transform.rotation);
             Instantiate(brokenPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().color = Color.clear;
+            Destroy(gameObject, 0.2f);
         }
 
         /*if (effects == 1)

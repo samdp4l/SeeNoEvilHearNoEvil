@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c50654818c6a54bb756b16132885d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: 60
+  fov: 75
   rayCount: 50
   viewDistance: 20
   enemy: {fileID: 0}

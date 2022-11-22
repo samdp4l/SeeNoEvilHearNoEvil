@@ -6,7 +6,6 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public float patrolSpeed = 5f;
     public float chaseSpeed = 8f;
-    public float attackSpeed = 12f;
     public Pathfinding.AIDestinationSetter pf;
     public Pathfinding.AIPath ap;
     public List<Transform> points = new List<Transform>();
@@ -14,8 +13,6 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform chaseTarget;
     [HideInInspector]
     public bool patrolling = true;
-    [HideInInspector]
-    public bool attacking = false;
     public bool isChime = true;
 
     private int currentPoint = 0;
@@ -41,21 +38,21 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetComponent<SenseModes>().visionMode == true)
+        if (player.GetComponent<SenseModes>().visionMode == true && isChime)
         {
             GetComponent<AudioSource>().volume = 0f;
         }
-        else
+        else if (isChime)
         {
             GetComponent<AudioSource>().volume = 0.2f;
         }
 
         if (ap.desiredVelocity == Vector3.zero)
         {
-            if (isChime)
+            /*if (isChime)
             {
                 GetComponent<AudioSource>().Stop();
-            }
+            }*/
 
             Invoke("Patrol", 4f);
         }
@@ -67,15 +64,18 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (patrolling == false)
         {
+            pf.target = chaseTarget;
+            ap.maxSpeed = chaseSpeed;
+
             if (isChime && chase == false)
             {
                 chase = true;
-                GetComponent<AudioSource>().pitch = 2f;
-                GetComponent<AudioSource>().Play();
-            }
 
-            pf.target = chaseTarget;
-            ap.maxSpeed = chaseSpeed;
+                if (isChime)
+                {
+                    GetComponent<AudioSource>().pitch = 2f;
+                }
+            }
         }
     }
 
@@ -98,12 +98,10 @@ public class EnemyBehaviour : MonoBehaviour
         if (isChime)
         {
             GetComponent<AudioSource>().pitch = 1f;
-            GetComponent<AudioSource>().Play();
         }
 
         chase = false;
         patrolling = true;
-        attacking = false;
 
         pf.enabled = true;
         pf.target = points[currentPoint];

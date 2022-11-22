@@ -8,8 +8,11 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
     public TextMeshProUGUI text;
     public int throwableLimit = 2;
+    [HideInInspector]
     public int journalCollection = 0;
+    [HideInInspector]
     public int glowstickCount = 0;
+    [HideInInspector]
     public int bottleCount = 0;
 
     private int memoryCollection = 0;
@@ -25,8 +28,7 @@ public class InventoryManager : MonoBehaviour
     public void CollectMemory(int collectionValue)
     {
         memoryCollection += collectionValue;
-        //text.text = "X" + collection.ToString();
-        Debug.Log("Memory: " + memoryCollection);
+        //Debug.Log("Memory: " + memoryCollection);
 
         if (memoryCollection == 1)
         {
@@ -41,18 +43,18 @@ public class InventoryManager : MonoBehaviour
     public void CollectJournal(int collectionValue)
     {
         journalCollection += collectionValue;
-        Debug.Log("Journal: " +journalCollection);
+        //Debug.Log("Journal: " +journalCollection);
     }
 
     public void CollectGlowstick(int collectionValue)
     {
         glowstickCount += collectionValue;
-        Debug.Log("Glowstick: " + glowstickCount);
+        //Debug.Log("Glowstick: " + glowstickCount);
     }
 
     public void CollectBottle(int collectionValue)
     {
         bottleCount += collectionValue;
-        Debug.Log("Bottle: " + bottleCount);
+        //Debug.Log("Bottle: " + bottleCount);
     }
 }

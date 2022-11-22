@@ -12,6 +12,7 @@ public class BlinkingEffect : MonoBehaviour
     public float speed = 1.5f;
 
     private bool blinking = false;
+    private bool blinkCD = false;
 
     private void Start()
     {
@@ -33,13 +34,24 @@ public class BlinkingEffect : MonoBehaviour
 
     public void Blink()
     {
-        blinking = true;
-        Invoke("StopBlink", 2f);
+        if (blinkCD == false)
+        {
+            blinking = true;
+            Invoke("StopBlink", 2f);
+
+            blinkCD = true;
+            Invoke("OffCooldown", 10f);
+        }
     }
 
     void StopBlink()
     {
         blinking = false;
         hit = false;
+    }
+
+    void OffCooldown()
+    { 
+        blinkCD = false;
     }
 }

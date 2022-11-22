@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1280900432516664970}
   - component: {fileID: 1280900432516664969}
   - component: {fileID: 2001137290218994402}
+  - component: {fileID: 8089357300762402647}
   m_Layer: 11
   m_Name: Glowstick
   m_TagString: Glowstick
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2989424, y: 0.28446275}
   m_EdgeRadius: 0
+--- !u!114 &8089357300762402647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280900432516664968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a584a3fa37318047a51adf35630af82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 2.5
+  normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}

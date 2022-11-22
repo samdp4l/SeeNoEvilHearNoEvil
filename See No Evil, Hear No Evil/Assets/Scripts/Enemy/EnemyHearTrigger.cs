@@ -8,7 +8,7 @@ public class EnemyHearTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collideInfo)
     {
-        if (collideInfo.gameObject.CompareTag("PlayerSonar") && enemy.GetComponent<EnemyBehaviour>().attacking == false)
+        if (collideInfo.gameObject.CompareTag("PlayerSonar"))
         {
             enemy.GetComponent<EnemyBehaviour>().patrolling = false;
             enemy.GetComponent<EnemyBehaviour>().chaseTarget = collideInfo.gameObject.transform;

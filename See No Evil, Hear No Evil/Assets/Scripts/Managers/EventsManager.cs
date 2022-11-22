@@ -8,6 +8,7 @@ public class EventsManager : MonoBehaviour
     public static EventsManager instance;
     public List<GameObject> enemySpawnpoints = new List<GameObject>();
     public AstarPath grid;
+    public AudioSource levelShiftSound;
 
     [HideInInspector]
     public int phase = 0;
@@ -50,11 +51,11 @@ public class EventsManager : MonoBehaviour
         if (phase == 0)
         {
             phase = 1;
-            AudioManager.instance.Play("LevelChange");
+            levelShiftSound.Play();
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[0].GetComponent<EnemySpawn>().enabled = true;
-            Debug.Log("Phase " + phase);
+            //Debug.Log("Phase " + phase);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -65,11 +66,11 @@ public class EventsManager : MonoBehaviour
         if (phase == 1)
         {
             phase = 2;
-            AudioManager.instance.Play("LevelChange");
+            levelShiftSound.Play();
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[1].GetComponent<EnemySpawn>().enabled = true;
-            Debug.Log("Phase " + phase);
+            //Debug.Log("Phase " + phase);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -80,10 +81,10 @@ public class EventsManager : MonoBehaviour
         if (phase == 2)
         {
             phase = 3;
-            AudioManager.instance.Play("LevelChange");
+            levelShiftSound.Play();
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
-            Debug.Log("Phase " + phase);
+            //Debug.Log("Phase " + phase);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -94,10 +95,10 @@ public class EventsManager : MonoBehaviour
         if (phase == 3)
         {
             phase = 4;
-            AudioManager.instance.Play("LevelChange");
+            levelShiftSound.Play();
             player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
-            Debug.Log("Phase " + phase);
+            //Debug.Log("Phase " + phase);
 
             Invoke("RescanGrid", 0.2f);
         }

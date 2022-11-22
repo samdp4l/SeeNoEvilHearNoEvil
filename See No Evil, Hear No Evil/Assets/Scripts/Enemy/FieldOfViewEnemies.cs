@@ -9,22 +9,12 @@ public class FieldOfViewEnemies : MonoBehaviour
     public Pathfinding.AIPath ap;
 
     private Vector3 direction;
-    //private Vector3 lookDirection;
-    //private float angle;
 
     private void Update()
     {
-        /*lookDirection = (ap.steeringTarget - transform.position).normalized;
-        angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        direction = new Vector3(0, 0, angle);*/
-
-        //Debug.Log(direction);
-        direction = new Vector3(0f, 0f, enemy.rotation.eulerAngles.z);//facing direction
-        //direction = enemy.position;
+        direction = new Vector3(0f, 0f, enemy.rotation.eulerAngles.z);
 
         enemyVision.SetOrigin(transform.position);
         enemyVision.SetAimDirection(direction);
-
-
     }
 }

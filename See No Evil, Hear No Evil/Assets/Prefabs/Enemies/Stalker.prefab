@@ -156,9 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38601469c66240541b6babe254951435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 1
-  chaseSpeed: 3
-  attackSpeed: 3
+  patrolSpeed: 2
+  chaseSpeed: 4
   pf: {fileID: 1243251969561378725}
   ap: {fileID: 1243251969561378724}
   points:
@@ -168,7 +167,6 @@ MonoBehaviour:
   - {fileID: 0}
   chaseTarget: {fileID: 0}
   patrolling: 1
-  attacking: 0
   isChime: 0
 --- !u!114 &1243251969561378723
 MonoBehaviour:

@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerThrow : MonoBehaviour
 {
     public GameObject bottlePrefab;
     public GameObject glowstickPrefab;
+    public float totalCooldown = 5f;
 
     private Transform throwPoint;
     private int itemChoice = 0;
     private bool throwCD;
+    private GameObject bottleIcon;
+    private GameObject glowstickIcon;
+    private GameObject cooldownText;
+    private float currentCooldown;
+
+    private void Awake()
+    {
+        throwPoint = GameObject.Find("Look Direction").transform;
+        bottleIcon = GameObject.Find("Bottle Icon");
+        glowstickIcon = GameObject.Find("Glowstick Icon");
+        cooldownText = GameObject.Find("Throw CD");
+    }
 
     private void Start()
     {
-        throwPoint = GameObject.Find("Look Direction").transform;
+        currentCooldown = totalCooldown;
+        cooldownText.SetActive(false);
     }
 
     private void Update()
@@ -48,7 +63,9 @@ public class PlayerThrow : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && throwCD == false && itemChoice != 0)
         {
             throwCD = true;
-            Invoke("OffCooldown", 5f);
+            InvokeRepeating("OffCooldown", 1f, 1f);
+
+            cooldownText.SetActive(true);
 
             if (itemChoice == 1 && InventoryManager.instance.bottleCount > 0)
             {
@@ -62,10 +79,39 @@ public class PlayerThrow : MonoBehaviour
                 InventoryManager.instance.glowstickCount -= 1;
             }
         }
+
+        if (itemChoice == 0)
+        {
+            bottleIcon.SetActive(false);
+            glowstickIcon.SetActive(false);
+        }
+        else if (itemChoice == 1)
+        {
+            bottleIcon.SetActive(true);
+            glowstickIcon.SetActive(false);
+        }
+        else if (itemChoice == 2)
+        {
+            bottleIcon.SetActive(false);
+            glowstickIcon.SetActive(true);
+        }
+
+        if (throwCD == true)
+        {
+            cooldownText.GetComponent<TextMeshProUGUI>().text = currentCooldown.ToString();
+        }
     }
 
     void OffCooldown()
     {
-        throwCD = false;
+        currentCooldown -= 1f;
+
+        if (currentCooldown <= 0f)
+        {
+            throwCD = false;
+            CancelInvoke("OffCooldown");
+            cooldownText.SetActive(false);
+            currentCooldown = totalCooldown;
+        }
     }
 }

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 51519389315380796}
   - component: {fileID: 51519389315380797}
-  - component: {fileID: 51519389315380930}
   - component: {fileID: 51519389315380799}
+  - component: {fileID: 51519389315380930}
+  - component: {fileID: -2082285448871700204}
   - component: {fileID: 7791967848543436475}
   m_Layer: 11
   m_Name: TV
@@ -87,22 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &51519389315380930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51519389315380931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 047569cbb80033b4c895a5b9bd5c9ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
-  spawnFreq: 1.5
-  useCd: 15
-  spawnCount: 5
 --- !u!61 &51519389315380799
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,6 +114,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &51519389315380930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51519389315380931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047569cbb80033b4c895a5b9bd5c9ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonarPrefab: {fileID: 3437814128136582608, guid: f430bd5b3fccdb740adfaaa1c96a9fb8, type: 3}
+  spawnFreq: 1.5
+  useCd: 15
+  spawnCount: 5
+--- !u!114 &-2082285448871700204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51519389315380931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a584a3fa37318047a51adf35630af82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}
 --- !u!82 &7791967848543436475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -139,7 +154,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4c4b03fd55f9c0a49a66a0d775ff5a04, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 94fa74fd6c3fbd3429930ae335ddafed, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.05
   m_Pitch: 1

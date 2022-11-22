@@ -10,17 +10,15 @@ public class EnemyAttackTrigger : MonoBehaviour
     {
         if (collideInfo.gameObject.CompareTag("Player"))
         {
-            enemy.GetComponent<EnemyBehaviour>().attacking = true;
             enemy.GetComponent<EnemyBehaviour>().patrolling = false;
             enemy.GetComponent<EnemyBehaviour>().chaseTarget = collideInfo.gameObject.transform;
 
-            Invoke("StopChase", 2f);
+            Invoke("StopChase", 5f);
         }
     }
 
     void StopChase()
     {
-        enemy.GetComponent<EnemyBehaviour>().attacking = false;
         enemy.GetComponent<EnemyBehaviour>().patrolling = true;
         enemy.GetComponent<EnemyBehaviour>().Patrol();
     }
