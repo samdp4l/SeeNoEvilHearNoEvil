@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8797475977821289954}
   - component: {fileID: 7252307049390974982}
   - component: {fileID: -3708136507053862838}
+  - component: {fileID: 9040606680257180100}
   - component: {fileID: 7939096223454324779}
   - component: {fileID: 4625629369904339838}
   m_Layer: 13
@@ -267,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42895bfabfacf7b499cff38b61cfadfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseTimer: 30
-  cooldown: 8
+  senseTimer: 60
+  totalCooldown: 5
   visionMode: 1
 --- !u!114 &4219207637132946429
 MonoBehaviour:
@@ -288,7 +289,7 @@ MonoBehaviour:
   gracePeriod: 3
   healFreq: 0.5
   healAmount: 1
-  dotTimer: 30
+  dotTimer: 60
   dotFreq: 1
   dotDmg: 5
   healthDot: 0
@@ -353,6 +354,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottlePrefab: {fileID: 3384971324293715460, guid: 8a602bd134d5f844589a464e3ee47fe9, type: 3}
   glowstickPrefab: {fileID: 2239296928417223010, guid: 7e6427a9faaa9cf4190a542ceaad8382, type: 3}
+  totalCooldown: 5
+--- !u!114 &9040606680257180100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedf42b7adc80fe4c9e956f095f51f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7939096223454324779
 Animator:
   serializedVersion: 4

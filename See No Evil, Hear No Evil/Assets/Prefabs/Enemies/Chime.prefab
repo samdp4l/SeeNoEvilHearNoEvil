@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1243251969561378730}
-  - component: {fileID: 1243251969561378731}
+  - component: {fileID: 4068034345141835801}
   - component: {fileID: 1243251969561378732}
   - component: {fileID: 1243251969561378728}
   - component: {fileID: 1554270882113949053}
@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 1243251969561378723}
   - component: {fileID: 1243251969561378724}
   - component: {fileID: 1243251969561378725}
+  - component: {fileID: -2735920122810941335}
   - component: {fileID: 6314944706609315398}
   m_Layer: 8
   m_Name: Chime
@@ -44,7 +45,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1243251969561378731
+--- !u!212 &4068034345141835801
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +65,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,18 +83,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 964492443
-  m_SortingLayer: 1
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b8ecc0a7e481381489ac52169ecf23e8, type: 3}
-  m_Color: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &1243251969561378732
@@ -301,6 +302,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &-2735920122810941335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243251969561378733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedf42b7adc80fe4c9e956f095f51f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &6314944706609315398
 AudioSource:
   m_ObjectHideFlags: 0
@@ -310,7 +323,7 @@ AudioSource:
   m_GameObject: {fileID: 1243251969561378733}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 155a3d0070cd7cb40b055a0cd9990a4b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1d9c79ecc10437b43b2bd30823d204fc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5

@@ -12,7 +12,7 @@ public class StatsManager : MonoBehaviour
     public float gracePeriod = 3f;
     public float healFreq = 0.5f;
     public int healAmount = 1;
-    public float dotTimer = 30f;
+    public float dotTimer = 60f;
     public float dotFreq = 1f;
     public int dotDmg = 5;
     [HideInInspector]
@@ -34,15 +34,23 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(DotStart());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private void OnCollisionEnter2D(Collision2D collideInfo)
     {
         if (collideInfo.gameObject.CompareTag("Enemy") && playerGrace == false)
         {
             playerGrace = true;
 
-            CancelInvoke();
             PlayerTakesDmg(20);
-            InvokeRepeating("PlayerHeal", gracePeriod, healFreq);
 
             for (int i = 1; i < 8; i++)
             {
@@ -54,9 +62,13 @@ public class StatsManager : MonoBehaviour
 
     public void PlayerTakesDmg(int dmg)
     {
+        CancelInvoke();
+
         AudioManager.instance.Play("PlayerHit");
         GameManager.gameManager.playerSanity.Sanitydmg(dmg);
         sanityBar.SetSanity(GameManager.gameManager.playerSanity.Sanity);
+
+        InvokeRepeating("PlayerHeal", gracePeriod, healFreq);
     }
 
     public void PlayerHeal()

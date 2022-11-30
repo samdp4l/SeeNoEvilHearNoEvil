@@ -398,6 +398,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 117210303}
     m_Modifications:
+    - target: {fileID: 7875145667697311407, guid: 27269cce96ee0074ba6ca411e8c7d248, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 117210304}
+    - target: {fileID: 7875145667697311407, guid: 27269cce96ee0074ba6ca411e8c7d248, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875145667697311407, guid: 27269cce96ee0074ba6ca411e8c7d248, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7875145667925016724, guid: 27269cce96ee0074ba6ca411e8c7d248, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

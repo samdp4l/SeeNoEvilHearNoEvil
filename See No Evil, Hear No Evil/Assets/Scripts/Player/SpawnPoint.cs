@@ -9,6 +9,23 @@ public class SpawnPoint : MonoBehaviour
 
     void Start()
     {
+        if (EventsManager.instance.phase == 0)
+        {
+            currentSpawn = 0;
+        }
+        else if (EventsManager.instance.phase == 1)
+        {
+            currentSpawn = 1;
+        }
+        else if (EventsManager.instance.phase == 2)
+        {
+            currentSpawn = 2;
+        }
+        else if (EventsManager.instance.phase == 3)
+        {
+            currentSpawn = 3;
+        }
+
         gameObject.transform.position = spawnPoints[currentSpawn].position;
     }
 }

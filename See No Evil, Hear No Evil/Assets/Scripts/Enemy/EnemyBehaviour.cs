@@ -124,7 +124,7 @@ public class EnemyBehaviour : MonoBehaviour
                 GetComponent<AudioSource>().Stop();
             }
             pf.enabled = false;
-            Invoke("Patrol", 4f);
+            Invoke("Patrol", 8f);
         }
     }
 }

@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class EventsManager : MonoBehaviour
 {
-    public GameObject player;
     public static EventsManager instance;
+    public GameObject player;
     public List<GameObject> enemySpawnpoints = new List<GameObject>();
     public AstarPath grid;
     public AudioSource levelShiftSound;
+
+    public DialogueTrigger wakeUpDialogue;
+    public DialogueTrigger closetDialogue;
+    public DialogueTrigger firstFragDialogue;
+    public DialogueTrigger secondFragDialogue;
+    public DialogueTrigger thirdFragDialogue;
 
     [HideInInspector]
     public int phase = 0;
@@ -16,14 +22,16 @@ public class EventsManager : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
-    }
 
-    void Start()
-    {
         if (instance == null)
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        Invoke("WakeUpDialogue", 0.1f);
     }
 
     private void Update()
@@ -52,10 +60,11 @@ public class EventsManager : MonoBehaviour
         {
             phase = 1;
             levelShiftSound.Play();
-            player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[0].GetComponent<EnemySpawn>().enabled = true;
             //Debug.Log("Phase " + phase);
+
+            closetDialogue.TriggerDialogue();
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -67,10 +76,11 @@ public class EventsManager : MonoBehaviour
         {
             phase = 2;
             levelShiftSound.Play();
-            player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             enemySpawnpoints[1].GetComponent<EnemySpawn>().enabled = true;
             //Debug.Log("Phase " + phase);
+
+            firstFragDialogue.TriggerDialogue();
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -82,7 +92,8 @@ public class EventsManager : MonoBehaviour
         {
             phase = 3;
             levelShiftSound.Play();
-            player.GetComponent<SpawnPoint>().currentSpawn += 1;
+
+            secondFragDialogue.TriggerDialogue();
 
             //Debug.Log("Phase " + phase);
 
@@ -96,12 +107,18 @@ public class EventsManager : MonoBehaviour
         {
             phase = 4;
             levelShiftSound.Play();
-            player.GetComponent<SpawnPoint>().currentSpawn += 1;
 
             //Debug.Log("Phase " + phase);
 
+            thirdFragDialogue.TriggerDialogue();
+
             Invoke("RescanGrid", 0.2f);
         }
+    }
+
+    void WakeUpDialogue()
+    {
+        wakeUpDialogue.TriggerDialogue();
     }
 
     void RescanGrid()

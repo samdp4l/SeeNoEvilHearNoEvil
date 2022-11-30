@@ -5,8 +5,8 @@ using TMPro;
 
 public class SenseModes : MonoBehaviour
 {
-    public float senseTimer = 30f;
-    public float totalCooldown = 8f;
+    public float senseTimer = 60f;
+    public float totalCooldown = 5f;
     [HideInInspector]
     public bool visionMode = true;
 
@@ -50,10 +50,9 @@ public class SenseModes : MonoBehaviour
             cooldownText.SetActive(true);
 
             CancelInvoke("Countdown");
-            senseTimer = 30f;
+            senseTimer = 60f;
             viewing.GetComponent<FieldOfView>().fov = 90f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 2f;
-            hearingRange.transform.localScale = new Vector3(30f, 30f);
 
             GetComponent<StatsManager>().StopAllCoroutines();
             GetComponent<StatsManager>().healthDot = false;
@@ -89,27 +88,34 @@ public class SenseModes : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        InvokeRepeating("Countdown", 1f, 1f);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("Countdown");
+    }
+
     void Countdown()
     {
         senseTimer -= 1;
 
-        if (senseTimer <= 0f)
+        if (senseTimer <= 5f)
         {
             viewing.GetComponent<FieldOfView>().fov = 10f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.25f;
-            hearingRange.transform.localScale = new Vector3(15f, 15f);
-        }
-        else if (senseTimer <= 10f)
-        {
-            viewing.GetComponent<FieldOfView>().fov = 30f;
-            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.5f;
-            hearingRange.transform.localScale = new Vector3(20f, 20f);
         }
         else if (senseTimer <= 20f)
         {
+            viewing.GetComponent<FieldOfView>().fov = 30f;
+            viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.5f;
+        }
+        else if (senseTimer <= 40f)
+        {
             viewing.GetComponent<FieldOfView>().fov = 60f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.75f;
-            hearingRange.transform.localScale = new Vector3(25f, 25f);
         }
     }
 
