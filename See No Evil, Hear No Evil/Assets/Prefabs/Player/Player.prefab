@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 2452410179635709491}
   - component: {fileID: 2636709142329220671}
   - component: {fileID: 4835113096372256472}
+  - component: {fileID: 1717966501921491858}
   - component: {fileID: 4219207637132946429}
   - component: {fileID: 4290026083623224614}
   - component: {fileID: 8797475977821289954}
@@ -271,6 +272,59 @@ MonoBehaviour:
   senseTimer: 60
   totalCooldown: 5
   visionMode: 1
+  sensesDialogue: {fileID: 1717966501921491858}
+--- !u!114 &1717966501921491858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 1
+  playerDialogue:
+    name: Jack Qi
+    sentences:
+    - '"I feel......weird, like I''m getting weaker?"
+
+      "Also, what the heck
+      is this tattoo on my arm?"'
+    - "\"So basically the reason you\u2019re annoying my thoughts.\""
+    - "\"...wasn\u2019t planning on doing that but, Ok.\""
+    - '"Wha-"'
+    - (Press <b>E</b> to switch between <b>Vision Mode</b> and <b>Hearing Modes</b>.)
+    - '(You''ll be able to see in <b>VISION MODE</b>, but some sounds will be silent.)
+
+      (You''ll
+      be able to "hear" sonars in <b>HEARING MODE</b>, but you won''t be able to
+      see far.)'
+    - (Don't stay in one mode for <b>TOO LONG</b>, or you'll start taking <b>DAMAGE</b>.)
+    - '"WHAT?!"'
+    - '"...Gee, how wonderful."'
+  demonDialogue:
+    name: Demon
+    sentences:
+    - "\"It\u2019s a mark that connects our minds to one another.\""
+    - "\"It won\u2019t come off even if you try to burn it off your skin.\"\r\n"
+    - "\"If you haven\u2019t noticed yet, it also heightens your senses in accordance
+      with mine.\""
+    - '"Unfortunately your mortal body cannot handle both senses, so you''ll either
+      be able to just see or hear for now."
+
+      "So you''ll have to focus on one
+      or the other. Try using the <b>E</b> key to switch senses."'
+    - '"When you''re using sight, you won''t be able to hear most sounds, and when
+      you''re using hearing, you won''t be able to see much, but you can hear quite
+      adeptly."'
+    - '"Also, don''t focus on one sense for too long, or else your body will start
+      detriorating."'
+    - '"Yeah so there''s that, try not to die."'
+    - "\"Calm down, you won\u2019t die.\"\r\n\"Just experience absolutely skull piercing
+      headaches.\""
 --- !u!114 &4219207637132946429
 MonoBehaviour:
   m_ObjectHideFlags: 0

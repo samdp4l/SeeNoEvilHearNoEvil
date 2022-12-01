@@ -5,10 +5,13 @@ using TMPro;
 
 public class SenseModes : MonoBehaviour
 {
+    public static bool senseDialoguePlayed = false;
+
     public float senseTimer = 60f;
     public float totalCooldown = 5f;
     [HideInInspector]
     public bool visionMode = true;
+    public DialogueTrigger sensesDialogue;
 
     private bool senseCD;
     private GameObject viewing;
@@ -114,6 +117,11 @@ public class SenseModes : MonoBehaviour
         }
         else if (senseTimer <= 40f)
         {
+            if (senseDialoguePlayed == false)
+            {
+                senseDialoguePlayed = true;
+                sensesDialogue.TriggerDialogue();
+            }
             viewing.GetComponent<FieldOfView>().fov = 60f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.75f;
         }

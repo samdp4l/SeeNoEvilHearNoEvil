@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1154521036485048207}
   - component: {fileID: 7773473830117489965}
   - component: {fileID: 3509679393016648026}
+  - component: {fileID: 6285220334433092146}
   m_Layer: 11
   m_Name: Opened
   m_TagString: Untagged
@@ -174,6 +175,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}
+  journalDialogue: {fileID: 0}
+  bottleDialogue: {fileID: 0}
+  glowstickDialogue: {fileID: 0}
+  tvDialogue: {fileID: 0}
+  closetDialogue: {fileID: 6285220334433092146}
+--- !u!114 &6285220334433092146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3876770529846461205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 1
+  playerDialogue:
+    name: Jack
+    sentences:
+    - (I can <b>HIDE</b> in these closets using <b>SPACEBAR</b>)
+  demonDialogue:
+    name: 
+    sentences: []
 --- !u!1 &9093586848883557900
 GameObject:
   m_ObjectHideFlags: 0

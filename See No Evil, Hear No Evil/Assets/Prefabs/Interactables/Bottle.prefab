@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9002771147735118096}
   - component: {fileID: 7076372664376546966}
   - component: {fileID: -6856221404409869530}
+  - component: {fileID: -3834398748587563800}
   m_Layer: 11
   m_Name: Bottle
   m_TagString: Bottle
@@ -114,6 +115,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a584a3fa37318047a51adf35630af82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRadius: 2.5
   normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}
+  journalDialogue: {fileID: 0}
+  bottleDialogue: {fileID: -3834398748587563800}
+  glowstickDialogue: {fileID: 0}
+  tvDialogue: {fileID: 0}
+  closetDialogue: {fileID: 0}
+--- !u!114 &-3834398748587563800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002771147735118103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 1
+  playerDialogue:
+    name: Jack
+    sentences:
+    - '(This bottle will make <b>SOUND</b> when thrown, I can throw with <b>LEFT
+      MOUSE CLICK</b>.)
+
+      (I can pick it up with <b>SPACEBAR</b>, and I can
+      switch between throwables with <b>C</b>.)'
+  demonDialogue:
+    name: 
+    sentences: []

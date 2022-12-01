@@ -7,10 +7,11 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
-    //public GameObject dialogueCanvas;
-    public GameObject dialogueBox;
+    public GameObject dialogueCanvas;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public Image playerImage;
+    public Image demonImage;
     public float textSpeed;
     [HideInInspector]
     public bool playerTalking = true;
@@ -33,10 +34,15 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        //dialogueCanvas.SetActive(false);
-        dialogueBox.SetActive(false);
+        dialogueCanvas.SetActive(false);
         playerSentences = new Queue<string>();
         demonSentences = new Queue<string>();
+
+        DontDestroyOnLoad(dialogueCanvas);
+        DontDestroyOnLoad(nameText);
+        DontDestroyOnLoad(dialogueText);
+        DontDestroyOnLoad(playerImage);
+        DontDestroyOnLoad(demonImage);
     }
 
     private void Update()
@@ -50,12 +56,16 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
+    private void OnLevelWasLoaded(int level)
+    {
+        dialogueCanvas.SetActive(false);
+    }
 
     public void PlayDialogue(Dialogue pDialogue, Dialogue dDialogue)
     {
         DisableCharacters();
 
-        dialogueBox.SetActive(true);
+        dialogueCanvas.SetActive(true);
 
         dialogueActive = true;
 
@@ -103,7 +113,10 @@ public class DialogueManager : MonoBehaviour
 
         if (playerTalking)
         {
-            nameText.text = "Jack Qi";
+            playerImage.color = Color.white;
+            demonImage.color = Color.black;
+
+            nameText.text = "Jack";
 
             dialogueText.text = "";
 
@@ -122,6 +135,9 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            playerImage.color = Color.black;
+            demonImage.color = Color.white;
+
             nameText.text = "Demon";
 
             dialogueText.text = "";
@@ -150,7 +166,7 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
         typing = false;
 
-        dialogueBox.SetActive(false);
+        dialogueCanvas.SetActive(false);
 
         EnableCharacters();
     }

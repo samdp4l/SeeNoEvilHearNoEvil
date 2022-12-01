@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +12,25 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (gameManager != null && gameManager != this)
-        {
-            Destroy(this);
-        }
-        else
+        if (gameManager == null)
         {
             gameManager = this;
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
+        if (gameManager != null && gameManager != this)
+        {
+            Destroy(gameObject);
+        }
     }
 }

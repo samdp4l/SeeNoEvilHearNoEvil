@@ -9,14 +9,30 @@ public class PauseMenu : MonoBehaviour
     public static bool GameisPaused = false;
 
     public GameObject pauseMenuUI;
+
+    /*public GameObject chimeMonsterInfo;
     public GameObject stalkerMonsterInfo;
-    public GameObject chimeMonsterInfo;
-    public GameObject secondObjective;
-    public GameObject thirdObjective;
+
+    public GameObject objective1;
+    public GameObject objective2;
+    public GameObject objective3;
+    public GameObject objective4;
+    public GameObject objective5;
+
     public GameObject journalText1;
     public GameObject journalText2;
     public GameObject journalText3;
     public GameObject journalText4;
+    public GameObject journalText5;
+    public GameObject journalText6;
+    public GameObject journalText7;
+    public GameObject journalText8;
+    public GameObject journalText9;
+    public GameObject journalText10;
+    public GameObject journalText11;
+    public GameObject journalText12;*/
+
+    public List<GameObject> entries;
 
     private GameObject player;
     private GameObject gameManager;
@@ -39,7 +55,6 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
-
         }
     }
     public void Resume()
@@ -72,43 +87,91 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void unlockSecondObjective()
+    public void UnlockEntry(int entry)
     {
-        secondObjective.SetActive(true);
-    }
+        for (int i = 0; i < entries.Count; i++)
+        {
+            if (i == entry)
+            {
+                entries[i].SetActive(true);
+            }
+        }
 
-    public void unlockThirdObjective()
-    {
-        thirdObjective.SetActive(true);
-    }
-
-    public void unlockStalker()
-    {
-        stalkerMonsterInfo.SetActive(true);
-    }
-
-    public void unlockChime()
-    {
-        chimeMonsterInfo.SetActive(true);
-    }
-
-    public void unlockText1()
-    {
-        journalText1.SetActive(true);
-    }
-
-    public void unlockText2()
-    {
-        journalText2.SetActive(true);
-    }
-
-    public void unlockText3()
-    {
-        journalText3.SetActive(true);
-    }
-
-    public void unlockText4()
-    {
-        journalText4.SetActive(true);
+        /*if (entry == 0)
+        {
+            objective1.SetActive(true);
+        }
+        else if (entry == 1)
+        {
+            objective2.SetActive(true);
+        }
+        else if (entry == 2)
+        {
+            objective3.SetActive(true);
+        }
+        else if (entry == 3)
+        {
+            objective4.SetActive(true);
+        }
+        else if (entry == 4)
+        {
+            objective5.SetActive(true);
+        }
+        else if (entry == 5)
+        {
+            journalText1.SetActive(true);
+        }
+        else if (entry == 6)
+        {
+            journalText2.SetActive(true);
+        }
+        else if (entry == 7)
+        {
+            journalText3.SetActive(true);
+        }
+        else if (entry == 8)
+        {
+            journalText4.SetActive(true);
+        }
+        else if (entry == 9)
+        {
+            journalText5.SetActive(true);
+        }
+        else if (entry == 10)
+        {
+            journalText6.SetActive(true);
+        }
+        else if (entry == 10)
+        {
+            journalText7.SetActive(true);
+        }
+        else if (entry == 11)
+        {
+            journalText8.SetActive(true);
+        }
+        else if (entry == 12)
+        {
+            journalText9.SetActive(true);
+        }
+        else if (entry == 13)
+        {
+            journalText10.SetActive(true);
+        }
+        else if (entry == 14)
+        {
+            journalText11.SetActive(true);
+        }
+        else if (entry == 15)
+        {
+            journalText12.SetActive(true);
+        }
+        else if (entry == 16)
+        {
+            chimeMonsterInfo.SetActive(true);
+        }
+        else if (entry == 17)
+        {
+            stalkerMonsterInfo.SetActive(true);
+        }*/
     }
 }

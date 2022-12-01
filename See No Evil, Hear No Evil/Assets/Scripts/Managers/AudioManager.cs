@@ -31,6 +31,11 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+
         foreach (Audio a in audioClips)
         {
             if (player.GetComponent<SenseModes>().visionMode == true)

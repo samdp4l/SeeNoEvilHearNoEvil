@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8091618602643818259}
   - component: {fileID: 3131680230150106091}
   - component: {fileID: -7692123845047788972}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemySonar
   m_TagString: EnemySonar
   m_Icon: {fileID: 0}
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 964492443
   m_SortingLayer: 1
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 874dd07485667ee449450294014e9ce2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7e1f2ba05cd56447998af94abc5bb27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.8, y: 7.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 3437814128136582608}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1623b8eaaa1f60949a9d29c9425574a4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0975cd6826bb9584fa78c5f091489cd9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

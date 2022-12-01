@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 51519389315380799}
   - component: {fileID: 51519389315380930}
   - component: {fileID: -2082285448871700204}
+  - component: {fileID: 3607109725616395991}
   - component: {fileID: 7791967848543436475}
   m_Layer: 11
   m_Name: TV
@@ -144,6 +145,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   highlightMat: {fileID: 2100000, guid: 3b685fa355e58be419ab74fcd1814805, type: 2}
+  journalDialogue: {fileID: 0}
+  bottleDialogue: {fileID: 0}
+  glowstickDialogue: {fileID: 0}
+  tvDialogue: {fileID: 3607109725616395991}
+  closetDialogue: {fileID: 0}
+--- !u!114 &3607109725616395991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51519389315380931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 1
+  playerDialogue:
+    name: Jack
+    sentences:
+    - '(This TV will make <b>SOUND</b> when used.)
+
+      (I can turn it on with
+      <b>SPACEBAR</b>.)'
+  demonDialogue:
+    name: 
+    sentences: []
 --- !u!82 &7791967848543436475
 AudioSource:
   m_ObjectHideFlags: 0

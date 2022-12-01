@@ -11,6 +11,7 @@ public class EventsManager : MonoBehaviour
     public AudioSource levelShiftSound;
 
     public DialogueTrigger wakeUpDialogue;
+    public DialogueTrigger movementDialogue;
     public DialogueTrigger closetDialogue;
     public DialogueTrigger firstFragDialogue;
     public DialogueTrigger secondFragDialogue;
@@ -119,6 +120,11 @@ public class EventsManager : MonoBehaviour
     void WakeUpDialogue()
     {
         wakeUpDialogue.TriggerDialogue();
+    }
+
+    void MovementDialogue()
+    {
+        movementDialogue.TriggerDialogue();
     }
 
     void RescanGrid()

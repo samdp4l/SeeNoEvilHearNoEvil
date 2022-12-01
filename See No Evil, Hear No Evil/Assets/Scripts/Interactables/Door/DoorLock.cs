@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class DoorLock : MonoBehaviour, InterfaceDoor
 {
+    public static bool firstDoorPlayed = false;
+
+    public bool firstDoor = false;
+    public bool closetDoor = false;
+
     public bool verticalOpen = true;
     public bool locked = false;
+    public DialogueTrigger firstDoorDialogue;
     public GameObject door;
     public AudioSource openSound;
     public AudioSource closeSound;
     public AudioSource lockedSound;
-
 
     private GameObject player;
     private HingeJoint2D hingeJoint2D;
@@ -54,8 +59,22 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
             hingeJoint2D.limits = openDoorLimitsUp;
             openSound.Play();
 
-            CancelInvoke("CloseDoor");
-            Invoke("CloseDoor", 5f);
+            if (firstDoor == false && closetDoor == false)
+            {
+                CancelInvoke("CloseDoor");
+                Invoke("CloseDoor", 5f);
+            }
+            else if (firstDoor == true && firstDoorPlayed == false)
+            {
+                firstDoor = false;
+                firstDoorPlayed = true;
+                firstDoorDialogue.TriggerDialogue();
+            }
+            else if (closetDoor == true)
+            {
+                closetDoor = false;
+            }
+
 
             Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
@@ -75,8 +94,21 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
             hingeJoint2D.limits = openDoorLimitsDown;
             openSound.Play();
 
-            CancelInvoke("CloseDoor");
-            Invoke("CloseDoor", 5f);
+            if (firstDoor == false && closetDoor == false)
+            {
+                CancelInvoke("CloseDoor");
+                Invoke("CloseDoor", 5f);
+            }
+            else if (firstDoor == true && firstDoorPlayed == false)
+            {
+                firstDoor = false;
+                firstDoorPlayed = true;
+                firstDoorDialogue.TriggerDialogue();
+            }
+            else if (closetDoor == true)
+            {
+                closetDoor = false;
+            }
 
             Physics2D.IgnoreCollision(door.GetComponent<Collider2D>(), player.GetComponent<Collider2D>());
 
