@@ -36,10 +36,20 @@ public class Hiding : MonoBehaviour, InterfaceHiding
     public void isHiding()
     {
         isHidingNow = true;
-        //playerMovementSpeed.speed = 0f;
-        player.SetActive(false);
+
         fov.SetActive(false);
         fovc.SetActive(false);
+
+        MonoBehaviour[] comps = player.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour c in comps)
+        {
+            c.enabled = false;
+        }
+        player.GetComponent<SpriteRenderer>().enabled = false;
+        player.GetComponent<Collider2D>().enabled = false;
+
+        player.GetComponent<StatsManager>().enabled = true;
+        player.GetComponent<SenseModes>().enabled = true;
 
         gameManager.GetComponent<AudioListener>().enabled = true;
 
@@ -50,10 +60,17 @@ public class Hiding : MonoBehaviour, InterfaceHiding
     public void isNotHiding()
     {
         isHidingNow = false;
-        //playerMovementSpeed.speed = 5f;
-        player.SetActive(true);
+
         fov.SetActive(true);
         fovc.SetActive(true);
+
+        MonoBehaviour[] comps = player.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour c in comps)
+        {
+            c.enabled = true;
+        }
+        player.GetComponent<SpriteRenderer>().enabled = true;
+        player.GetComponent<Collider2D>().enabled = true;
 
         gameManager.GetComponent<AudioListener>().enabled = false;
 
@@ -73,4 +90,24 @@ public class Hiding : MonoBehaviour, InterfaceHiding
             isNotHiding();
         }
     }
+
+    /*public void PauseObject()
+    {
+        MonoBehaviour[] comps = GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour c in comps)
+        {
+            c.enabled = false;
+        }
+
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void UnpauseObject()
+    {
+        MonoBehaviour[] comps = GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour c in comps)
+        {
+            c.enabled = true;
+        }
+    }*/
 }

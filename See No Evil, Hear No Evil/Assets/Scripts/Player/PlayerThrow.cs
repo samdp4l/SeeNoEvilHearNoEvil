@@ -8,6 +8,7 @@ public class PlayerThrow : MonoBehaviour
     public GameObject bottlePrefab;
     public GameObject glowstickPrefab;
     public float totalCooldown = 5f;
+    public TextMeshProUGUI itemCountText;
 
     private Transform throwPoint;
     private int itemChoice = 0;
@@ -84,16 +85,19 @@ public class PlayerThrow : MonoBehaviour
         {
             bottleIcon.SetActive(false);
             glowstickIcon.SetActive(false);
+            itemCountText.text = null;
         }
         else if (itemChoice == 1)
         {
             bottleIcon.SetActive(true);
             glowstickIcon.SetActive(false);
+            itemCountText.text = InventoryManager.instance.bottleCount.ToString();
         }
         else if (itemChoice == 2)
         {
             bottleIcon.SetActive(false);
             glowstickIcon.SetActive(true);
+            itemCountText.text = InventoryManager.instance.glowstickCount.ToString();
         }
 
         if (throwCD == true)

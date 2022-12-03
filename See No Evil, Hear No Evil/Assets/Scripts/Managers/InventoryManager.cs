@@ -38,6 +38,10 @@ public class InventoryManager : MonoBehaviour
         {
             EventsManager.instance.PhaseThree();
         }
+        if (memoryCollection == 3)
+        {
+            EventsManager.instance.PhaseFour();
+        }
     }
 
     public void CollectJournal(int collectionValue)

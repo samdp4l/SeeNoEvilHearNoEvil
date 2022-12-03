@@ -9,16 +9,18 @@ public class StatsManager : MonoBehaviour
     [SerializeField]StaminaBar staminaBar;
     [SerializeField]PlayerMovement playerMove;
 
-    public float gracePeriod = 3f;
-    public float healFreq = 0.5f;
+    public float gracePeriod = 5f;
+    public float healFreq = 0.25f;
     public int healAmount = 1;
     public float dotTimer = 60f;
     public float dotFreq = 1f;
     public int dotDmg = 5;
     [HideInInspector]
     public bool healthDot = false;
+    public AudioSource deathSound;
 
     private bool playerGrace = false;
+    private bool dead = false;
 
     private void Start()
     {
@@ -27,10 +29,13 @@ public class StatsManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.gameManager.playerSanity.Sanity <= 0)
+        if (GameManager.gameManager.playerSanity.Sanity <= 0 && dead == false)
         {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            dead = true;
+            GetComponent<PlayerMovement>().enabled = false;
+            deathSound.Play();
+
+            Invoke("ReloadScene", 5f);
         }
     }
 
@@ -62,7 +67,7 @@ public class StatsManager : MonoBehaviour
 
     public void PlayerTakesDmg(int dmg)
     {
-        CancelInvoke();
+        CancelInvoke("PlayerHeal");
 
         AudioManager.instance.Play("PlayerHit");
         GameManager.gameManager.playerSanity.Sanitydmg(dmg);
@@ -132,5 +137,11 @@ public class StatsManager : MonoBehaviour
     public void StartDotCoroutine()
     {
         StartCoroutine(DotStart());
+    }
+
+    void ReloadScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

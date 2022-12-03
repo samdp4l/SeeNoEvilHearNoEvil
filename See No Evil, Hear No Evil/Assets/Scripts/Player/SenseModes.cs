@@ -121,6 +121,8 @@ public class SenseModes : MonoBehaviour
             {
                 senseDialoguePlayed = true;
                 sensesDialogue.TriggerDialogue();
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(8);
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(9);
             }
             viewing.GetComponent<FieldOfView>().fov = 60f;
             viewingCircle.GetComponent<FieldOfViewCircle>().viewDistance = 1.75f;

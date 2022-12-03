@@ -98,16 +98,20 @@ GameObject:
   - component: {fileID: 4664527273051286593}
   - component: {fileID: 2452410179635709491}
   - component: {fileID: 2636709142329220671}
+  - component: {fileID: 8716670787777953731}
   - component: {fileID: 4835113096372256472}
   - component: {fileID: 1717966501921491858}
+  - component: {fileID: 6280615706276220565}
   - component: {fileID: 4219207637132946429}
   - component: {fileID: 4290026083623224614}
   - component: {fileID: 8797475977821289954}
+  - component: {fileID: 7841605538126717195}
   - component: {fileID: 7252307049390974982}
   - component: {fileID: -3708136507053862838}
   - component: {fileID: 9040606680257180100}
   - component: {fileID: 7939096223454324779}
   - component: {fileID: 4625629369904339838}
+  - component: {fileID: 1637420970742472788}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -250,13 +254,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 3
   runSpeed: 6
-  sneakSpeed: 2
+  sneakSpeed: 1
   rb: {fileID: 2636709142329220670}
   animator: {fileID: 7939096223454324779}
+  movementDialogue: {fileID: 8716670787777953731}
   moving: 0
   walking: 0
   running: 0
   sneaking: 0
+--- !u!114 &8716670787777953731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 0
+  updateJournal: 0
+  playerDialogue:
+    name: Jack Qi
+    sentences:
+    - (<b>W A S D</b> to move, <b>MOUSE</b> to look around, <b>LEFT SHIFT</b> to
+      sprint. )
+    - (<b>SPACEBAR</b> to interact with highlighted objects and doors.)
+  demonDialogue:
+    name: Demon
+    sentences:
+    - '"Did you forget how to move your body as well?"
+
+      "Just focus on trying
+      to move your body."
+
+'
+    - "\u201CThere\u2019s something in front of you, looks like a <b>NOTE</b>.\u201D\r\n\u201CGo
+      pick it up, it could be useful.\u201D\r\n"
 --- !u!114 &4835113096372256472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,8 +322,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFirst: 1
+  updateJournal: 1
   playerDialogue:
-    name: Jack Qi
+    name: Jack
     sentences:
     - '"I feel......weird, like I''m getting weaker?"
 
@@ -296,7 +333,7 @@ MonoBehaviour:
     - "\"So basically the reason you\u2019re annoying my thoughts.\""
     - "\"...wasn\u2019t planning on doing that but, Ok.\""
     - '"Wha-"'
-    - (Press <b>E</b> to switch between <b>Vision Mode</b> and <b>Hearing Modes</b>.)
+    - (<b>E</b> to switch between <b>Vision Mode</b> and <b>Hearing Modes</b>.)
     - '(You''ll be able to see in <b>VISION MODE</b>, but some sounds will be silent.)
 
       (You''ll
@@ -316,7 +353,7 @@ MonoBehaviour:
       be able to just see or hear for now."
 
       "So you''ll have to focus on one
-      or the other. Try using the <b>E</b> key to switch senses."'
+      or the other."'
     - '"When you''re using sight, you won''t be able to hear most sounds, and when
       you''re using hearing, you won''t be able to see much, but you can hear quite
       adeptly."'
@@ -325,6 +362,19 @@ MonoBehaviour:
     - '"Yeah so there''s that, try not to die."'
     - "\"Calm down, you won\u2019t die.\"\r\n\"Just experience absolutely skull piercing
       headaches.\""
+--- !u!114 &6280615706276220565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e354eecf59b8038499de415c4704cf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteNo: 0
 --- !u!114 &4219207637132946429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,13 +390,14 @@ MonoBehaviour:
   sanityBar: {fileID: 0}
   staminaBar: {fileID: 0}
   playerMove: {fileID: 2636709142329220671}
-  gracePeriod: 3
+  gracePeriod: 5
   healFreq: 0.5
   healAmount: 1
   dotTimer: 60
   dotFreq: 1
   dotDmg: 5
   healthDot: 0
+  deathSound: {fileID: 1637420970742472788}
 --- !u!114 &4290026083623224614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,8 +429,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2636709142329220643}
+  journalUpdateText: {fileID: 0}
   interactRadius: 1.75
   animator: {fileID: 7939096223454324779}
+  maxedDialogue: {fileID: 7841605538126717195}
+--- !u!114 &7841605538126717195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90afd93be2d199448bdfa044eb94dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFirst: 1
+  updateJournal: 0
+  playerDialogue:
+    name: Jack
+    sentences:
+    - (Can't carry anymore.)
+  demonDialogue:
+    name: 
+    sentences: []
 --- !u!114 &7252307049390974982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +483,7 @@ MonoBehaviour:
   bottlePrefab: {fileID: 3384971324293715460, guid: 8a602bd134d5f844589a464e3ee47fe9, type: 3}
   glowstickPrefab: {fileID: 2239296928417223010, guid: 7e6427a9faaa9cf4190a542ceaad8382, type: 3}
   totalCooldown: 5
+  itemCountText: {fileID: 0}
 --- !u!114 &9040606680257180100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +524,102 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2636709142329220655}
   m_Enabled: 1
+--- !u!82 &1637420970742472788
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2636709142329220655}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a1751886a92e83842a7f46bd507d2f62, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2636709142829462707
 GameObject:
   m_ObjectHideFlags: 0

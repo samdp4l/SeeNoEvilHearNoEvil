@@ -17,14 +17,8 @@ public class Interactable : MonoBehaviour
     public DialogueTrigger glowstickDialogue;
     public DialogueTrigger tvDialogue;
     public DialogueTrigger closetDialogue;
-    public GameObject promptCanvas;
 
     private float interactRadius = 1.5f;
-
-    private void Start()
-    {
-        promptCanvas = GameObject.Find("Button Prompt");
-    }
 
     void Update()
     {
@@ -33,14 +27,10 @@ public class Interactable : MonoBehaviour
         if (collider2DArray == null || collider2DArray.Length == 0)
         {
             gameObject.GetComponent<Renderer>().material = normalMat;
-            promptCanvas.SetActive(false);
         }
         else
         {
             gameObject.GetComponent<Renderer>().material = highlightMat;
-
-            promptCanvas.SetActive(true);
-            promptCanvas.GetComponent<ButtonPrompts>().PromptUser(false, "Space");
 
             if (gameObject.CompareTag("Journal") && journalDialoguePlayed == false)
             {

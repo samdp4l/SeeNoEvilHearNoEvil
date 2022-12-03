@@ -62,7 +62,6 @@ public class FieldOfView : MonoBehaviour
             }
             else
             {
-                //Hit Object
                 vertex = raycastHit2D.point;
             }
             vertices[vertexIndex] = vertex;

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static bool movementDialoguePlayed = false;
+
     public float startSpeed = 5f;
     public float runSpeed = 10f;
     public float sneakSpeed = 2f;
     public Rigidbody2D rb;
     public Animator animator;
+    public DialogueTrigger movementDialogue;
     [HideInInspector]
     public bool moving;
     [HideInInspector]
@@ -29,32 +32,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && movementDialoguePlayed == false)
+        {
+            movementDialoguePlayed = true;
+            movementDialogue.TriggerDialogue();
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
+            animator.SetBool("Moving", true);
+
             transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);
             moving = true;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
+            animator.SetBool("Moving", true);
+
             transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
             moving = true;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
+            animator.SetBool("Moving", true);
+
             transform.position += new Vector3(0f, -speed * Time.deltaTime, 0f);
             moving = true;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
+            animator.SetBool("Moving", true);
+
             transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
             moving = true;
         }
 
         if (Input.anyKey == false)
         {
+            animator.SetBool("Moving", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Sprinting", false);
+
             moving = false;
         }
 
@@ -67,6 +88,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (sneaking == false)
             {
+                animator.SetBool("Walking", true);
+                animator.SetBool("Sprinting", false);
+
                 walking = false;
                 running = false;
                 sneaking = true;
@@ -83,6 +107,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (running == false)
             {
+                animator.SetBool("Walking", false);
+                animator.SetBool("Sprinting", true);
+
                 walking = false;
                 running = true;
                 sneaking = false;
@@ -90,8 +117,6 @@ public class PlayerMovement : MonoBehaviour
                 AudioManager.instance.Stop("PlayerWalk");
                 AudioManager.instance.Play("PlayerRun");
             }
-
-            animator.SetBool("Running", true);
 
             speed = runSpeed;
 
@@ -101,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (moving == true)
         {
+            animator.SetBool("Walking", true);
+            animator.SetBool("Sprinting", false);
+
             if (walking == false)
             {
                 walking = true;
@@ -113,13 +141,16 @@ public class PlayerMovement : MonoBehaviour
                 AudioManager.instance.Stop("PlayerRun");
             }
 
-            animator.SetBool("Walking", true);
             speed = startSpeed;
 
             Invoke("StartStamRegen", 3f);
         }
         else 
         {
+            animator.SetBool("Moving", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Sprinting", false);
+
             walking = false;
             running = false;
             sneaking = false;

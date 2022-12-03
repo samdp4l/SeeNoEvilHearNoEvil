@@ -12,12 +12,14 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public Image playerImage;
     public Image demonImage;
+    public GameObject journalUpdateText;
     public float textSpeed;
     [HideInInspector]
     public bool playerTalking = true;
     [HideInInspector]
     public bool dialogueActive = false;
 
+    private bool updatesJournal = false;
     private bool typing = false;
     private Queue<string> playerSentences;
     private Queue<string> demonSentences;
@@ -34,7 +36,6 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        dialogueCanvas.SetActive(false);
         playerSentences = new Queue<string>();
         demonSentences = new Queue<string>();
 
@@ -43,6 +44,7 @@ public class DialogueManager : MonoBehaviour
         DontDestroyOnLoad(dialogueText);
         DontDestroyOnLoad(playerImage);
         DontDestroyOnLoad(demonImage);
+        DontDestroyOnLoad(journalUpdateText);
     }
 
     private void Update()
@@ -56,21 +58,31 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
-    private void OnLevelWasLoaded(int level)
+
+    private void OnLevelWasLoaded()
     {
-        dialogueCanvas.SetActive(false);
+        instance.dialogueCanvas.SetActive(false);
     }
 
-    public void PlayDialogue(Dialogue pDialogue, Dialogue dDialogue)
+    public void PlayDialogue(Dialogue pDialogue, Dialogue dDialogue, bool update)
     {
         DisableCharacters();
 
-        dialogueCanvas.SetActive(true);
+        instance.dialogueCanvas.SetActive(true);
 
         dialogueActive = true;
 
         playerSentences.Clear();
         demonSentences.Clear();
+
+        if (update == true)
+        {
+            updatesJournal = true;
+        }
+        else
+        {
+            updatesJournal = false;
+        }
 
         foreach (string sentence in pDialogue.sentences)
         {
@@ -166,7 +178,12 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
         typing = false;
 
-        dialogueCanvas.SetActive(false);
+        if (updatesJournal == true)
+        {
+            JournalUpdatePing();
+        }
+
+        instance.dialogueCanvas.SetActive(false);
 
         EnableCharacters();
     }
@@ -195,5 +212,17 @@ public class DialogueManager : MonoBehaviour
         {
             e.GetComponent<DialoguePause>().UnpauseObject();
         }
+    }
+
+    void JournalUpdatePing()
+    {
+        CancelInvoke("ClosePing");
+        journalUpdateText.SetActive(true);
+        Invoke("ClosePing", 6f);
+    }
+
+    void ClosePing()
+    {
+        journalUpdateText.SetActive(false);
     }
 }

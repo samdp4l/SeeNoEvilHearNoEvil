@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c169cf67eed0aa94eaaeda0d81dcbbd5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7823ab987169e854488119d9382c07dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03596258, y: -0.16923511}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.02, y: 0.27}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 2.02, y: 0.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.02, y: 0.27}
+  m_Size: {x: 2.0073075, y: 0.18538243}
   m_EdgeRadius: 0
 --- !u!114 &-1269866103967656920
 MonoBehaviour:
@@ -124,3 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb2784e459305c4d97ff11be99b7019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debrisPrefab: {fileID: 2949170994898214878, guid: fb3c325f879330e40a6bb6b7dcd2b5f4, type: 3}

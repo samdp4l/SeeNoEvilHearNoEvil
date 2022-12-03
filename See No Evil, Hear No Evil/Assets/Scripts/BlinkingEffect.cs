@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BlinkingEffect : MonoBehaviour
 {
-    private SpriteRenderer sprite;
+    public static bool seenDialoguePlayed;
+
     public bool hit = false;
     public Color startColor = Color.black;
     public Color endColor = Color.red;
     [Range(0, 10)]
     public float speed = 1.5f;
+    public DialogueTrigger seenDialogue;
 
+    private SpriteRenderer sprite;
     private bool blinking = false;
     private bool blinkCD = false;
 
@@ -41,6 +44,12 @@ public class BlinkingEffect : MonoBehaviour
 
             blinkCD = true;
             Invoke("OffCooldown", 10f);
+
+            if (seenDialoguePlayed == false)
+            {
+                seenDialoguePlayed = true;
+                Invoke("PlaySeenDialogue", 0.5f);
+            }
         }
     }
 
@@ -54,4 +63,9 @@ public class BlinkingEffect : MonoBehaviour
     { 
         blinkCD = false;
     }
+
+    void PlaySeenDialogue()
+    {
+        seenDialogue.TriggerDialogue();
+    }    
 }

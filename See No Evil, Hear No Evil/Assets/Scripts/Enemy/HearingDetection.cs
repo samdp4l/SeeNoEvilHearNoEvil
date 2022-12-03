@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class HearingDetection : MonoBehaviour
 {
-    [HideInInspector]
-    public bool inRange = false;
+    private GameObject player;
 
-    void OnTriggerEnter2D(Collider2D collideInfo)
+    private void Awake()
     {
-        if (collideInfo.gameObject.name == "Hearing Range")
-        {
-            inRange = true;
-            Invoke("OnSonarScript", 0.1f);
-        }
+        player = GameObject.Find("Player");
     }
 
-    void OnTriggerExit2D(Collider2D collideInfo)
+    private void Update()
     {
-        if (collideInfo.gameObject.name == "Hearing Range")
+        if (player.GetComponent<SenseModes>().visionMode)
         {
-            inRange = false;
-            Invoke("OffSonarScript", 0.1f);
+            OffSonarScript();
+        }
+        else
+        {
+            OnSonarScript();
         }
     }
 

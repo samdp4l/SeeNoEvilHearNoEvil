@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Distraction : MonoBehaviour
 {
+    public SpriteRenderer tvOn;
+    public SpriteRenderer tvOff;
     public GameObject sonarPrefab;
+
     public float spawnFreq = 1.5f;
     public float useCd = 15f;
     public int spawnCount = 5;
@@ -35,8 +38,13 @@ public class Distraction : MonoBehaviour
         if (cooldown == false)
         {
             GetComponent<AudioSource>().Play();
+
             cooldown = true;
             currentCount = 0;
+
+            tvOn.enabled = true;
+            tvOff.enabled = false;
+
             InvokeRepeating("SpawnSonar", 0f, spawnFreq);
             Invoke("OffCooldown", useCd);
         }
@@ -53,6 +61,10 @@ public class Distraction : MonoBehaviour
         else
         {
             GetComponent<AudioSource>().Stop();
+
+            tvOn.enabled = false;
+            tvOff.enabled = true;
+
             CancelInvoke("SpawnSonar");
         }
     }

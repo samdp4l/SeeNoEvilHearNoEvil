@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform; 
+    [SerializeField]
+    private Transform playerTransform; 
+    public GameObject journalUpdateText;
     public float interactRadius = 2.5f;
     public Animator animator;
+    public DialogueTrigger maxedDialogue;
 
     private int collectionValue = 1;
 
     private void Awake()
     {
-        playerTransform = GameObject.Find("Player").transform;
+        playerTransform = gameObject.transform;
     }
 
     private void Update()
@@ -29,7 +32,7 @@ public class PlayerInteract : MonoBehaviour
 
                 if(collider2D.gameObject != null)
                 {
-                    animator.SetBool("Interact", true);
+                    animator.SetBool("Interacting", true);
                     Invoke("OffAni", 0.3f);
                 }
 
@@ -54,6 +57,12 @@ public class PlayerInteract : MonoBehaviour
                 {
                     AudioManager.instance.Play("WriteJournal");
                     InventoryManager.instance.CollectJournal(collectionValue);
+
+                    CancelInvoke("ClosePing");
+                    collider2D.gameObject.GetComponent<UnlockEntry>().TriggerNoteEntry();
+                    journalUpdateText.SetActive(true);
+                    Invoke("ClosePing", 6f);
+
                     Destroy(collider2D.gameObject);
                 }
 
@@ -61,12 +70,14 @@ public class PlayerInteract : MonoBehaviour
                 {
                     if (InventoryManager.instance.glowstickCount < InventoryManager.instance.throwableLimit)
                     {
+                        AudioManager.instance.Play("PickUp");
                         InventoryManager.instance.CollectGlowstick(collectionValue);
                         Destroy(collider2D.gameObject);
                     }
                     else
                     {
-                        Debug.Log("Can't carry anymore glowsticks");
+                        //Debug.Log("Can't carry anymore glowsticks");
+                        maxedDialogue.TriggerDialogue();
                     }
                 }
 
@@ -74,12 +85,14 @@ public class PlayerInteract : MonoBehaviour
                 {
                     if (InventoryManager.instance.bottleCount < InventoryManager.instance.throwableLimit)
                     {
+                        AudioManager.instance.Play("PickUp");
                         InventoryManager.instance.CollectBottle(collectionValue);
                         Destroy(collider2D.gameObject);
                     }
                     else
                     {
-                        Debug.Log("Can't carry anymore bottles");
+                        //Debug.Log("Can't carry anymore bottles");
+                        maxedDialogue.TriggerDialogue();
                     }
                 }
 
@@ -98,6 +111,11 @@ public class PlayerInteract : MonoBehaviour
 
     void OffAni()
     {
-        animator.SetBool("Interact", false);
+        animator.SetBool("Interacting", false);
+    }
+
+    void ClosePing()
+    {
+        journalUpdateText.SetActive(false);
     }
 }

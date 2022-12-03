@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EventsManager : MonoBehaviour
@@ -11,7 +12,6 @@ public class EventsManager : MonoBehaviour
     public AudioSource levelShiftSound;
 
     public DialogueTrigger wakeUpDialogue;
-    public DialogueTrigger movementDialogue;
     public DialogueTrigger closetDialogue;
     public DialogueTrigger firstFragDialogue;
     public DialogueTrigger secondFragDialogue;
@@ -35,8 +35,20 @@ public class EventsManager : MonoBehaviour
         Invoke("WakeUpDialogue", 0.1f);
     }
 
-    private void Update()
+    private void OnLevelWasLoaded()
     {
+        player = GameObject.Find("Player");
+        grid = GameObject.Find("A*").GetComponent<AstarPath>();
+    }
+
+    /*private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             PhaseOne();
@@ -53,7 +65,7 @@ public class EventsManager : MonoBehaviour
         {
             PhaseFour();
         }
-    }
+    }*/
 
     public void PhaseOne()
     {
@@ -66,6 +78,9 @@ public class EventsManager : MonoBehaviour
             //Debug.Log("Phase " + phase);
 
             closetDialogue.TriggerDialogue();
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(2);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(12);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(13);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -81,7 +96,11 @@ public class EventsManager : MonoBehaviour
             enemySpawnpoints[1].GetComponent<EnemySpawn>().enabled = true;
             //Debug.Log("Phase " + phase);
 
-            firstFragDialogue.TriggerDialogue();
+            CutscenesManager.instance.PlayCutscene1();
+            //firstFragDialogue.TriggerDialogue();
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(3);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(14);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(18);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -94,7 +113,11 @@ public class EventsManager : MonoBehaviour
             phase = 3;
             levelShiftSound.Play();
 
-            secondFragDialogue.TriggerDialogue();
+            CutscenesManager.instance.PlayCutscene2();
+            //secondFragDialogue.TriggerDialogue();
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(4);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(15);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(19);
 
             //Debug.Log("Phase " + phase);
 
@@ -111,7 +134,11 @@ public class EventsManager : MonoBehaviour
 
             //Debug.Log("Phase " + phase);
 
-            thirdFragDialogue.TriggerDialogue();
+            CutscenesManager.instance.PlayCutscene3();
+            //thirdFragDialogue.TriggerDialogue();
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(5);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(16);
+            gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(17);
 
             Invoke("RescanGrid", 0.2f);
         }
@@ -120,11 +147,9 @@ public class EventsManager : MonoBehaviour
     void WakeUpDialogue()
     {
         wakeUpDialogue.TriggerDialogue();
-    }
-
-    void MovementDialogue()
-    {
-        movementDialogue.TriggerDialogue();
+        gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(0);
+        gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(6);
+        gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(7);
     }
 
     void RescanGrid()

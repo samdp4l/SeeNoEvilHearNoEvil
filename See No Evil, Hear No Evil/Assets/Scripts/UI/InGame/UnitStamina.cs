@@ -72,6 +72,7 @@ public class UnitStamina
             currentStamina -= staminaAmount * Time.deltaTime;
         }
     }
+
     public void regenStamina()
     {
         if (currentStamina < currentMaxStamina && !pauseStaminaRegen)

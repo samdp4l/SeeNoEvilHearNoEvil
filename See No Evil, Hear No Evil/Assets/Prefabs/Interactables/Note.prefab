@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6112695491746132211}
   - component: {fileID: -3027458569027516073}
   - component: {fileID: -2433989381342926285}
+  - component: {fileID: 4190956223561224065}
   - component: {fileID: 1280511098116466682}
   m_Layer: 11
   m_Name: Note
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 15e4849dbbff3aa4f8da028a46039856, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f05c5d30cd42ca4b976cd1ee3d1be7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.001065582, y: 0}
+  m_Offset: {x: -0.001065582, y: 0.051130354}
   serializedVersion: 2
-  m_Radius: 0.43327853
+  m_Radius: 0.44058284
 --- !u!114 &-2433989381342926285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +123,19 @@ MonoBehaviour:
   glowstickDialogue: {fileID: 0}
   tvDialogue: {fileID: 0}
   closetDialogue: {fileID: 0}
+  promptCanvas: {fileID: 0}
+--- !u!114 &4190956223561224065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929356375061307239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e354eecf59b8038499de415c4704cf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1280511098116466682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFirst: 1
+  updateJournal: 0
   playerDialogue:
     name: Jack
     sentences:

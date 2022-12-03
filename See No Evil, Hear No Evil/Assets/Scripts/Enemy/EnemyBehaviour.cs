@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public static bool stalkerDialoguePlayed = false;
+
     public float patrolSpeed = 5f;
     public float chaseSpeed = 8f;
     public Pathfinding.AIDestinationSetter pf;
@@ -14,6 +16,10 @@ public class EnemyBehaviour : MonoBehaviour
     [HideInInspector]
     public bool patrolling = true;
     public bool isChime = true;
+    public Animator animator;
+    public DialogueTrigger stalkerDialogue;
+    public AudioSource hitSound;
+    public AudioSource stalkerSound;
 
     private int currentPoint = 0;
     private GameObject[] enemies;
@@ -28,6 +34,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Start()
     {
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Walking", true);
+
         foreach (GameObject enemy in enemies)
         {
             Physics2D.IgnoreCollision(enemy.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
@@ -38,13 +47,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (this.enabled == true && isChime)
+        {
+            GetComponent<AudioSource>().enabled = true;
+        }
+
         if (player.GetComponent<SenseModes>().visionMode == true && isChime)
         {
             GetComponent<AudioSource>().volume = 0f;
         }
         else if (isChime)
         {
-            GetComponent<AudioSource>().volume = 0.2f;
+            GetComponent<AudioSource>().volume = 0.4f;
         }
 
         if (ap.desiredVelocity == Vector3.zero)
@@ -54,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
                 GetComponent<AudioSource>().Stop();
             }*/
 
-            Invoke("Patrol", 4f);
+            Invoke("Patrol", 6f);
         }
 
         if (patrolling == true)
@@ -95,6 +109,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void Patrol()
     {
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Walking", true);
+
         if (isChime)
         {
             GetComponent<AudioSource>().pitch = 1f;
@@ -119,12 +136,40 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collideInfo.gameObject.CompareTag("Player"))
         {
+            hitSound.Play();
+
+            animator.SetBool("Attacking", true);
+            animator.SetBool("Walking", false);
+            Invoke("OffAni", 0.5f);
+
             if (isChime)
             {
                 GetComponent<AudioSource>().Stop();
             }
+            else if (stalkerDialoguePlayed == false)
+            {
+                stalkerDialoguePlayed = true;
+                Invoke("PlayStalkerDialogue", 3f);
+                stalkerSound.Play();
+            }
+            else 
+            {
+                stalkerSound.Play();
+            }
+
             pf.enabled = false;
             Invoke("Patrol", 8f);
         }
+    }
+
+    void OffAni()
+    {
+        animator.SetBool("Attacking", false);
+        animator.SetBool("Walking", false);
+    }
+
+    void PlayStalkerDialogue()
+    {
+        stalkerDialogue.TriggerDialogue();
     }
 }

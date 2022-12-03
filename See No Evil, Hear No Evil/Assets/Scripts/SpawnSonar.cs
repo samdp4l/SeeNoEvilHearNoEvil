@@ -13,7 +13,7 @@ public class SpawnSonar : MonoBehaviour
 
     void OnEnable()
     {
-        if (gameObject.CompareTag("Enemy") && GetComponent<HearingDetection>().inRange == true)
+        if (gameObject.CompareTag("Enemy"))
         {
             InvokeRepeating("SonarSpawn", 0f, enemySonarFreq);
         }
@@ -44,11 +44,6 @@ public class SpawnSonar : MonoBehaviour
             {
                 CancelInvoke();
             }
-        }
-
-        if (gameObject.CompareTag("Enemy") && GetComponent<HearingDetection>().inRange == false)
-        {
-            CancelInvoke();
         }
     }
 

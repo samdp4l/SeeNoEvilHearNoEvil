@@ -69,7 +69,17 @@ public class EnemyVision : MonoBehaviour
                 //Hit no Object
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
             }
-            else if (raycastHit2D.collider.CompareTag("Player") || raycastHit2D.collider.CompareTag("Glowstick"))
+            else if (raycastHit2D.collider.CompareTag("Glowstick"))
+            {
+                GameObject thisPos;
+                //Hit Object
+                vertex = raycastHit2D.point;
+
+                thisPos = Instantiate(lastPos, raycastHit2D.collider.transform.position, raycastHit2D.collider.transform.rotation);
+                enemy.GetComponent<EnemyBehaviour>().patrolling = false;
+                enemy.GetComponent<EnemyBehaviour>().chaseTarget = thisPos.transform;
+            }
+            else if(raycastHit2D.collider.CompareTag("Player"))
             {
                 GameObject thisPos;
                 //Hit Object
@@ -79,11 +89,8 @@ public class EnemyVision : MonoBehaviour
                 enemy.GetComponent<EnemyBehaviour>().patrolling = false;
                 enemy.GetComponent<EnemyBehaviour>().chaseTarget = thisPos.transform;
 
-                if (raycastHit2D.collider.CompareTag("Player") && black.GetComponent<BlinkingEffect>().hit == false)
-                {
-                    black.GetComponent<BlinkingEffect>().hit = true;
-                    black.GetComponent<BlinkingEffect>().Blink();
-                }
+                black.GetComponent<BlinkingEffect>().hit = true;
+                black.GetComponent<BlinkingEffect>().Blink();
             }
             else
             {

@@ -69,6 +69,9 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
                 firstDoor = false;
                 firstDoorPlayed = true;
                 firstDoorDialogue.TriggerDialogue();
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(1);
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(10);
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(11);
             }
             else if (closetDoor == true)
             {
@@ -104,6 +107,9 @@ public class DoorLock : MonoBehaviour, InterfaceDoor
                 firstDoor = false;
                 firstDoorPlayed = true;
                 firstDoorDialogue.TriggerDialogue();
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(1);
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(10);
+                gameObject.GetComponent<UnlockEntry>().TriggerJournalEntry(11);
             }
             else if (closetDoor == true)
             {

@@ -11,6 +11,7 @@ public class StaminaBar : MonoBehaviour
     {
         staminaSlider = GetComponent<Slider>();
     }
+
     public void SetMaxStamina(float maxStamina)
     {
         staminaSlider.maxValue = maxStamina;
